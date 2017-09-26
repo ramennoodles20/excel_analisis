@@ -1,12 +1,13 @@
 ﻿Public Class pantallaPrincipal
 
-    Dim CW As Integer = Me.Width ' Current Width
-    Dim CH As Integer = Me.Height ' Current Height
-    Dim IW As Integer = Me.Width ' Initial Width
-    Dim IH As Integer = Me.Height ' Initial Height
+    Private reader As file_reader = New file_reader()
 
-    Private Sub Form1_Resize(ByVal sender As Object,
-            ByVal e As System.EventArgs) Handles Me.Resize
+    Private CW As Integer = Me.Width ' Current Width
+    Private CH As Integer = Me.Height ' Current Height
+    Private IW As Integer = Me.Width ' Initial Width
+    Private IH As Integer = Me.Height ' Initial Height
+
+    Private Sub Form1_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
 
         Dim RW As Double = (Me.Width - CW) / CW
         Dim RH As Double = (Me.Height - CH) / CH
@@ -33,12 +34,8 @@
 
     Private Sub AgregarArchivoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarArchivoToolStripMenuItem.Click
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
-            Dim path As String = OpenFileDialog1.FileName
-            file_reader.open_File(path)
+            reader.path = OpenFileDialog1.FileName
+            reader.open_File()
         End If
-    End Sub
-
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-
     End Sub
 End Class
