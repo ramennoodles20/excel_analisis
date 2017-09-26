@@ -1,0 +1,26 @@
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\bin\Debug\excel_analisis.exe.config
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\bin\Debug\excel_analisis.exe
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\bin\Debug\excel_analisis.pdb
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\bin\Debug\excel_analisis.xml
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbprojResolveAssemblyReference.cache
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\obj\Debug\excel_analisis.Resources.resources
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.GenerateResource.Cache
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\obj\Debug\excel_analisis.exe
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\obj\Debug\excel_analisis.xml
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\obj\Debug\excel_analisis.pdb
+C:\Users\Curso\Desktop\Trabajo investigacion\excel_analisis\excel_analisis\obj\Debug\excel_analisis.pantallaPrincipal.resources
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.exe.config
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.exe
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.xml
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.pdb
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.exe
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.pdb
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.xml
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbprojResolveAssemblyReference.cache
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.pantallaPrincipal.resources
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.Resources.resources
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.GenerateResource.Cache
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.exe.config
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.exe
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.xml
+C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.pdb
