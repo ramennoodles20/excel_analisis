@@ -32,10 +32,15 @@ Partial Class pantallaPrincipal
         Me.NuevaPlantillaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgregarArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.Procedimiento = New System.Windows.Forms.TabPage()
+        Me.agregarPaso = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.operacion = New System.Windows.Forms.ComboBox()
         Me.Tab_Principal.SuspendLayout()
         Me.visualizacion.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
+        Me.Procedimiento.SuspendLayout()
         Me.SuspendLayout()
         '
         'Tab_Principal
@@ -43,6 +48,7 @@ Partial Class pantallaPrincipal
         Me.Tab_Principal.AccessibleName = ""
         Me.Tab_Principal.Controls.Add(Me.reporte_final)
         Me.Tab_Principal.Controls.Add(Me.visualizacion)
+        Me.Tab_Principal.Controls.Add(Me.Procedimiento)
         Me.Tab_Principal.Location = New System.Drawing.Point(216, 12)
         Me.Tab_Principal.Name = "Tab_Principal"
         Me.Tab_Principal.SelectedIndex = 0
@@ -73,9 +79,10 @@ Partial Class pantallaPrincipal
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(6, 16)
+        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 3)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(885, 421)
+        Me.DataGridView1.Size = New System.Drawing.Size(891, 402)
         Me.DataGridView1.TabIndex = 1
         '
         'lista_plantillas
@@ -118,6 +125,50 @@ Partial Class pantallaPrincipal
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'Procedimiento
+        '
+        Me.Procedimiento.Controls.Add(Me.operacion)
+        Me.Procedimiento.Controls.Add(Me.Button2)
+        Me.Procedimiento.Controls.Add(Me.agregarPaso)
+        Me.Procedimiento.Location = New System.Drawing.Point(4, 22)
+        Me.Procedimiento.Name = "Procedimiento"
+        Me.Procedimiento.Padding = New System.Windows.Forms.Padding(3)
+        Me.Procedimiento.Size = New System.Drawing.Size(897, 547)
+        Me.Procedimiento.TabIndex = 2
+        Me.Procedimiento.Text = "Procedimiento"
+        Me.Procedimiento.UseVisualStyleBackColor = True
+        '
+        'agregarPaso
+        '
+        Me.agregarPaso.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.agregarPaso.Location = New System.Drawing.Point(134, 85)
+        Me.agregarPaso.Name = "agregarPaso"
+        Me.agregarPaso.Size = New System.Drawing.Size(75, 23)
+        Me.agregarPaso.TabIndex = 0
+        Me.agregarPaso.Text = "Paso"
+        Me.agregarPaso.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button2.Location = New System.Drawing.Point(816, 518)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 1
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'operacion
+        '
+        Me.operacion.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.operacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.operacion.FormattingEnabled = True
+        Me.operacion.Items.AddRange(New Object() {"Operación dos columnas", "Sumatoria "})
+        Me.operacion.Location = New System.Drawing.Point(7, 85)
+        Me.operacion.Name = "operacion"
+        Me.operacion.Size = New System.Drawing.Size(121, 21)
+        Me.operacion.TabIndex = 2
+        '
         'pantallaPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -134,12 +185,11 @@ Partial Class pantallaPrincipal
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.Procedimiento.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Tab_Principal As TabControl
     Friend WithEvents reporte_final As TabPage
     Friend WithEvents visualizacion As TabPage
     Friend WithEvents lista_plantillas As ListBox
@@ -149,4 +199,9 @@ Partial Class pantallaPrincipal
     Friend WithEvents AgregarArchivoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents Tab_Principal As TabControl
+    Friend WithEvents Procedimiento As TabPage
+    Friend WithEvents Button2 As Button
+    Friend WithEvents agregarPaso As Button
+    Friend WithEvents operacion As ComboBox
 End Class
