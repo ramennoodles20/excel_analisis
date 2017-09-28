@@ -5,7 +5,7 @@ Public Class file_reader
     Private app As New Excel.Application
     Private workBook As Excel.Workbook
     Private workSheet As Excel.Worksheet
-    Private range As Excel.Range
+    Public range As Excel.Range
 
 
     Public Sub open_File()
