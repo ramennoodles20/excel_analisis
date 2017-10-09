@@ -23,7 +23,7 @@ Partial Class pantallaPrincipal
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Tab_Principal = New System.Windows.Forms.TabControl()
-        Me.reporte_final = New System.Windows.Forms.TabPage()
+        Me.fill_rate = New System.Windows.Forms.TabPage()
         Me.visualizacion = New System.Windows.Forms.TabPage()
         Me.viewPort = New System.Windows.Forms.DataGridView()
         Me.Procedimiento = New System.Windows.Forms.TabPage()
@@ -47,7 +47,7 @@ Partial Class pantallaPrincipal
         'Tab_Principal
         '
         Me.Tab_Principal.AccessibleName = ""
-        Me.Tab_Principal.Controls.Add(Me.reporte_final)
+        Me.Tab_Principal.Controls.Add(Me.fill_rate)
         Me.Tab_Principal.Controls.Add(Me.visualizacion)
         Me.Tab_Principal.Controls.Add(Me.Procedimiento)
         Me.Tab_Principal.Location = New System.Drawing.Point(216, 12)
@@ -56,15 +56,16 @@ Partial Class pantallaPrincipal
         Me.Tab_Principal.Size = New System.Drawing.Size(905, 573)
         Me.Tab_Principal.TabIndex = 0
         '
-        'reporte_final
+        'fill_rate
         '
-        Me.reporte_final.Location = New System.Drawing.Point(4, 22)
-        Me.reporte_final.Name = "reporte_final"
-        Me.reporte_final.Padding = New System.Windows.Forms.Padding(3)
-        Me.reporte_final.Size = New System.Drawing.Size(897, 547)
-        Me.reporte_final.TabIndex = 0
-        Me.reporte_final.Text = "Reporte Final"
-        Me.reporte_final.UseVisualStyleBackColor = True
+        Me.fill_rate.AutoScroll = True
+        Me.fill_rate.Location = New System.Drawing.Point(4, 22)
+        Me.fill_rate.Name = "fill_rate"
+        Me.fill_rate.Padding = New System.Windows.Forms.Padding(3)
+        Me.fill_rate.Size = New System.Drawing.Size(897, 547)
+        Me.fill_rate.TabIndex = 0
+        Me.fill_rate.Text = "Fill Rate"
+        Me.fill_rate.UseVisualStyleBackColor = True
         '
         'visualizacion
         '
@@ -205,7 +206,7 @@ Partial Class pantallaPrincipal
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents reporte_final As TabPage
+    Friend WithEvents fill_rate As TabPage
     Friend WithEvents visualizacion As TabPage
     Friend WithEvents lista_plantillas As ListBox
     Friend WithEvents MenuStrip1 As MenuStrip

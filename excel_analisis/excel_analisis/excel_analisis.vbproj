@@ -72,7 +72,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="file_reader.vb" />
+    <Compile Include="Analisis.vb" />
+    <Compile Include="fill_rate.vb" />
+    <Compile Include="file.vb" />
     <Compile Include="pantallaPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>

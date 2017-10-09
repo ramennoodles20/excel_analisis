@@ -1,5 +1,5 @@
 ﻿Imports Excel = Microsoft.Office.Interop.Excel
-Public Class file_reader
+Public Class file
     Public path As String
 
     Private app As New Excel.Application
@@ -13,10 +13,4 @@ Public Class file_reader
         workSheet = DirectCast(workBook.Sheets(1), Excel.Worksheet)
         range = workSheet.UsedRange
     End Sub
-
-    Public Sub read_File()
-
-    End Sub
-
-
 End Class
