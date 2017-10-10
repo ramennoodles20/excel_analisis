@@ -1,7 +1,8 @@
 ﻿Imports Excel = Microsoft.Office.Interop.Excel
 Public Class pantallaPrincipal
 
-    Private file As New file()
+    Private fill_rate_file As New file()
+    Dim analisis As fill_rate
 
     Private CW As Integer = Me.Width ' Current Width
     Private CH As Integer = Me.Height ' Current Height
@@ -33,12 +34,18 @@ Public Class pantallaPrincipal
 
     End Sub
 
-    Private Sub AgregarArchivoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarArchivoToolStripMenuItem.Click
+    Private Sub FillRateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FillRateToolStripMenuItem.Click
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
-            file.path = OpenFileDialog1.FileName
-            file.open_File()
-            Dim Analisis As fill_rate = New fill_rate(file)
-            Analisis.analyze()
+            fill_rate_file.path = OpenFileDialog1.FileName
+            fill_rate_file.open_File()
+            analisis = New fill_rate(fill_rate_file)
+            analisis.analyze()
+
+            Dim data As DataGrid = New DataGrid
         End If
+    End Sub
+
+    Private Sub fill_rate_Click(sender As Object, e As EventArgs) Handles fill_rate.Click
+
     End Sub
 End Class

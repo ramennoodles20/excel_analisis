@@ -35,7 +35,9 @@ Partial Class pantallaPrincipal
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NuevaPlantillaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AgregarArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AnalizarArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FillRateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StockRotationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Tab_Principal.SuspendLayout()
         Me.visualizacion.SuspendLayout()
@@ -163,7 +165,7 @@ Partial Class pantallaPrincipal
         '
         'ArchivoToolStripMenuItem
         '
-        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NuevaPlantillaToolStripMenuItem, Me.AgregarArchivoToolStripMenuItem})
+        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NuevaPlantillaToolStripMenuItem, Me.AnalizarArchivoToolStripMenuItem})
         Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
         Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.ArchivoToolStripMenuItem.Text = "Archivo"
@@ -174,11 +176,24 @@ Partial Class pantallaPrincipal
         Me.NuevaPlantillaToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.NuevaPlantillaToolStripMenuItem.Text = "Nueva Plantilla"
         '
-        'AgregarArchivoToolStripMenuItem
+        'AnalizarArchivoToolStripMenuItem
         '
-        Me.AgregarArchivoToolStripMenuItem.Name = "AgregarArchivoToolStripMenuItem"
-        Me.AgregarArchivoToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
-        Me.AgregarArchivoToolStripMenuItem.Text = "Agregar Archivo"
+        Me.AnalizarArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FillRateToolStripMenuItem, Me.StockRotationToolStripMenuItem})
+        Me.AnalizarArchivoToolStripMenuItem.Name = "AnalizarArchivoToolStripMenuItem"
+        Me.AnalizarArchivoToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.AnalizarArchivoToolStripMenuItem.Text = "Analizar Archivo"
+        '
+        'FillRateToolStripMenuItem
+        '
+        Me.FillRateToolStripMenuItem.Name = "FillRateToolStripMenuItem"
+        Me.FillRateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.FillRateToolStripMenuItem.Text = "Fill Rate "
+        '
+        'StockRotationToolStripMenuItem
+        '
+        Me.StockRotationToolStripMenuItem.Name = "StockRotationToolStripMenuItem"
+        Me.StockRotationToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.StockRotationToolStripMenuItem.Text = "Stock Rotation"
         '
         'OpenFileDialog1
         '
@@ -212,7 +227,7 @@ Partial Class pantallaPrincipal
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents ArchivoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NuevaPlantillaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AgregarArchivoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AnalizarArchivoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents viewPort As DataGridView
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents Tab_Principal As TabControl
@@ -221,4 +236,6 @@ Partial Class pantallaPrincipal
     Friend WithEvents agregarPaso As Button
     Friend WithEvents operacion As ComboBox
     Friend WithEvents Visualizar As Button
+    Friend WithEvents FillRateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StockRotationToolStripMenuItem As ToolStripMenuItem
 End Class
