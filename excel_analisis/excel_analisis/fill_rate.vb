@@ -50,6 +50,7 @@ Class fill_rate
     End Sub
 
     Overloads Overrides Sub analyze(ByVal filter As String)
+        values = New Hashtable
         Dim boxOrdered As Integer = sum_division(7, 9, filter)
         Dim boxDelivered As Integer = sum_division(8, 10, filter)
         Dim boxDiference As Integer = boxOrdered - boxDelivered
