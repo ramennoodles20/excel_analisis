@@ -5,6 +5,7 @@ MustInherit Class Analisis
     Protected max_rows As Integer
     Protected max_columns As Integer
     Protected first_row As Integer
+    Public values As New Hashtable()
 
     Sub New(ByVal pFile As file)
         Me.file = pFile
@@ -14,8 +15,8 @@ MustInherit Class Analisis
     End Sub
 
     MustOverride Overloads Sub analyze()
-
     MustOverride Overloads Sub analyze(ByVal filter As String)
+    MustOverride Function find_first_row()
 
     Protected Overloads Function sum_division(ByVal column1 As Integer, ByVal column2 As Integer)
         Dim result As Integer = 0
@@ -61,9 +62,6 @@ MustInherit Class Analisis
         End While
         Return result
     End Function
-
-    MustOverride Function find_first_row()
-
 
     Protected Function get_cell(ByVal row As Integer, ByVal column As Integer)
         Return CType(file.range.Cells(row, column), Excel.Range).Value
