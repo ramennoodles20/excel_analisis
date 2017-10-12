@@ -1,11 +1,14 @@
 ﻿Imports Excel = Microsoft.Office.Interop.Excel
+Imports System
+Imports System.IO
+Imports System.Text
 Public Class pantallaPrincipal
 
     Private fill_rate_file As New file()
     Dim analisis As Analisis
 
     Dim fillRateData As DataGridView = New DataGridView
-    Dim products As New List(Of String)(New String() {"FOUR LOK", "MOKAI"})
+    Dim products As New List(Of String)
 
     Private CW As Integer = Me.Width ' Current Width
     Private CH As Integer = Me.Height ' Current Height
@@ -33,6 +36,16 @@ Public Class pantallaPrincipal
             ByVal e As System.EventArgs) Handles MyBase.Load
         IW = Me.Width
         IH = Me.Height
+        load_filters()
+    End Sub
+
+    Private Sub load_filters()
+        Dim reader As StreamReader = New StreamReader("C:\Users\Curso\Desktop\excel_analisis\fill rate filters.txt")
+        Do While reader.Peek() >= 0
+            Dim line As String = reader.ReadLine
+            add_new_filter(line)
+        Loop
+        reader.Close()
     End Sub
 
     Private Sub FillRateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FillRateToolStripMenuItem.Click
@@ -40,13 +53,14 @@ Public Class pantallaPrincipal
             fill_rate_file.path = OpenFileDialog1.FileName
             fill_rate_file.open_File()
             analisis = New fill_rate(fill_rate_file)
-            configureDataGrid()
-            fill_rate.Controls.Add(fillRateData)
             showFillRateFile()
         End If
     End Sub
 
-    Private Sub configureDataGrid()
+    Private Sub resetDataGrid()
+        fillRateData.RowCount = 1
+        fillRateData.ColumnCount = 1
+
         'format data grid
         fillRateData.RowCount = 7
         fillRateData.ColumnCount = 10
@@ -55,78 +69,87 @@ Public Class pantallaPrincipal
         fillRateData.RowHeadersVisible = False
         fillRateData.ColumnHeadersVisible = False
 
+        'column formats
         fillRateData.Columns(4).DefaultCellStyle.Format = "N2"
         fillRateData.Columns(5).DefaultCellStyle.Format = "N2"
         fillRateData.Columns(6).DefaultCellStyle.Format = "N2"
         fillRateData.Columns(7).DefaultCellStyle.Format = "N2"
+
+        'titles
+        fillRateData.Rows(0).Cells(1).Value = "Cajas Pedidas"
+        fillRateData.Rows(0).Cells(2).Value = "Cajas Entregadas"
+        fillRateData.Rows(0).Cells(3).Value = "Diferencia Cajas"
+        fillRateData.Rows(0).Cells(4).Value = "% Nivel Servicio"
+        fillRateData.Rows(0).Cells(5).Value = "Ordenado $"
+        fillRateData.Rows(0).Cells(6).Value = "Recibido $"
+        fillRateData.Rows(0).Cells(7).Value = "Faltante $"
+        fillRateData.Rows(5).Cells(0).Value = "FALTANTES"
+
+        'show grid 
+        fill_rate.Controls.Add(fillRateData)
     End Sub
 
     Private Sub showFillRateFile()
+        resetDataGrid()
+        analyzeProductResults()
+        totalProducts()
+    End Sub
 
-        analisis.analyze("FOUR LOK")
-        Dim four As Hashtable = analisis.values
+    Private Sub analyzeProductResults()
+        For Each product In products
+            'add row to fill with product results
+            fillRateData.Rows.Insert(1, 1)
+            'get product results 
+            analisis.analyze(product)
+            Dim results As Hashtable = analisis.values
+            'show product results
+            fillRateData.Rows(1).Cells(1).Value = results.Item("boxesOrdered")
+            fillRateData.Rows(1).Cells(2).Value = results.Item("boxesDelivered")
+            fillRateData.Rows(1).Cells(3).Value = results.Item("boxDiference")
+            fillRateData.Rows(1).Cells(4).Value = results.Item("servicePercent")
+            fillRateData.Rows(1).Cells(5).Value = results.Item("amountOrdered")
+            fillRateData.Rows(1).Cells(6).Value = results.Item("amountDelivered")
+            fillRateData.Rows(1).Cells(7).Value = results.Item("amountLost")
+            showMissingProducts(analisis.values.Item("missingItems"))
+        Next
+    End Sub
 
-        analisis.analyze("MOKAI")
-        Dim mokai As Hashtable = analisis.values
-
-        'analisis general
-        fillRateData.Rows(0).Cells(1).Value = "Cajas Pedidas"
-        fillRateData.Rows(1).Cells(1).Value = four.Item("boxesOrdered")
-        fillRateData.Rows(2).Cells(1).Value = mokai.Item("boxesOrdered")
-        fillRateData.Rows(3).Cells(1).Value = fillRateData.Rows(1).Cells(1).Value + fillRateData.Rows(2).Cells(1).Value
-
-        fillRateData.Rows(0).Cells(2).Value = "Cajas Entregadas"
-        fillRateData.Rows(1).Cells(2).Value = four.Item("boxesDelivered")
-        fillRateData.Rows(2).Cells(2).Value = mokai.Item("boxesDelivered")
-        fillRateData.Rows(3).Cells(2).Value = fillRateData.Rows(1).Cells(2).Value + fillRateData.Rows(2).Cells(2).Value
-
-        fillRateData.Rows(0).Cells(3).Value = "Diferencia Cajas"
-        fillRateData.Rows(1).Cells(3).Value = four.Item("boxDiference")
-        fillRateData.Rows(2).Cells(3).Value = mokai.Item("boxDiference")
-        fillRateData.Rows(3).Cells(3).Value = fillRateData.Rows(1).Cells(3).Value + fillRateData.Rows(2).Cells(3).Value
-
-        fillRateData.Rows(0).Cells(4).Value = "% Nivel Servicio"
-        fillRateData.Rows(1).Cells(4).Value = four.Item("servicePercent")
-        fillRateData.Rows(2).Cells(4).Value = mokai.Item("servicePercent")
-        fillRateData.Rows(3).Cells(4).Value = ((fillRateData.Rows(3).Cells(2).Value / fillRateData.Rows(3).Cells(1).Value)) * 100
-
-        fillRateData.Rows(0).Cells(5).Value = "Ordenado $"
-        fillRateData.Rows(1).Cells(5).Value = four.Item("amountOrdered")
-        fillRateData.Rows(2).Cells(5).Value = mokai.Item("amountOrdered")
-        fillRateData.Rows(3).Cells(5).Value = fillRateData.Rows(1).Cells(5).Value + fillRateData.Rows(2).Cells(5).Value
-
-        fillRateData.Rows(0).Cells(6).Value = "Recibido $"
-        fillRateData.Rows(1).Cells(6).Value = four.Item("amountDelivered")
-        fillRateData.Rows(2).Cells(6).Value = mokai.Item("amountDelivered")
-        fillRateData.Rows(3).Cells(6).Value = fillRateData.Rows(1).Cells(6).Value + fillRateData.Rows(2).Cells(6).Value
-
-        fillRateData.Rows(0).Cells(7).Value = "Faltante $"
-        fillRateData.Rows(1).Cells(7).Value = four.Item("amountLost")
-        fillRateData.Rows(2).Cells(7).Value = mokai.Item("amountLost")
-        fillRateData.Rows(3).Cells(7).Value = fillRateData.Rows(1).Cells(7).Value + fillRateData.Rows(2).Cells(7).Value
-
-        'analisis de faltantes
-        fillRateData.Rows(5).Cells(0).Value = "FALTANTES"
-
-        Dim row As Integer = 6
-        Dim items As Hashtable = four.Item("missingItems")
-        fillRateData.RowCount += items.Count
+    Private Sub showMissingProducts(ByVal items As Hashtable)
+        'start at last row 
+        Dim row As Integer = fillRateData.RowCount - 1
+        'add enough rows to display all products
+        fillRateData.RowCount += items.Count + 1
         For Each key In items.Keys
             fillRateData.Rows(row).Cells(0).Value = key
             fillRateData.Rows(row).Cells(1).Value = items.Item(key)
             row += 1
         Next
+    End Sub
 
-        row = fillRateData.RowCount
-        items = mokai.Item("missingItems")
-        fillRateData.RowCount += items.Count
-        For Each key In items.Keys
-            fillRateData.Rows(row).Cells(0).Value = key
-            fillRateData.Rows(row).Cells(1).Value = items.Item(key)
-            row += 1
+    Private Sub totalProducts()
+        fillRateData.Rows.Insert(products.Count + 1, 1)
+        For row As Integer = 1 To products.Count
+            For column As Integer = 1 To 7
+                fillRateData.Rows(products.Count + 1).Cells(column).Value += fillRateData.Rows(row).Cells(column).Value
+            Next
         Next
+        'service percent is calculated differently 
+        fillRateData.Rows(products.Count + 1).Cells(4).Value = (fillRateData.Rows(products.Count + 1).Cells(2).Value / fillRateData.Rows(products.Count + 1).Cells(1).Value) * 100
+    End Sub
 
-        fill_rate.Controls.Add(fillRateData)
 
+    Private Sub add_new_filter(ByVal text As String)
+        Dim filterItem As New filterItem(text)
+        filterList.Controls.Add(filterItem)
+        products.Add(text)
+    End Sub
+
+    Private Sub add_filter_Click(sender As Object, e As EventArgs) Handles add_filter.Click
+        add_new_filter(filter_text.Text)
+        showFillRateFile()
+    End Sub
+
+    Private Sub filter_removed(ByVal sender As Object, ByVal e As System.Windows.Forms.ControlEventArgs) Handles filterList.ControlRemoved
+        products.Remove(e.Control.Name)
     End Sub
 End Class

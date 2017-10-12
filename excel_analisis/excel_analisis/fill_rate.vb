@@ -7,8 +7,6 @@ Class fill_rate
         MyBase.New(pFile)
     End Sub
 
-
-
     Overrides Function find_first_row()
         Dim row As Integer = 1
         Dim text As String
@@ -39,14 +37,6 @@ Class fill_rate
         values.Add("amountDelivered", amountDeliviered)
         values.Add("amountLost", amountLost)
         values.Add("missingItems", missingItems)
-
-        'Debug.Print("Cajas pedidas " & boxOrdered)
-        'Debug.Print("Cajas Entregadas " & boxDelivered)
-        'Debug.Print("Diferencia cajas " & boxDiference)
-        'Debug.Print("Porcentaje Servicio " & servicePercent)
-        'Debug.Print("$ pedidos " & amountOrdered)
-        'Debug.Print("$ entregados " & amountDeliviered)
-        'Debug.Print("$ perdidos " & amountLost)
     End Sub
 
     Overloads Overrides Sub analyze(ByVal filter As String)
@@ -69,14 +59,6 @@ Class fill_rate
         values.Add("amountDelivered", amountDeliviered)
         values.Add("amountLost", amountLost)
         values.Add("missingItems", missingItems)
-
-        'Debug.Print("Cajas pedidas " & boxOrdered)
-        'Debug.Print("Cajas Entregadas " & boxDelivered)
-        'Debug.Print("Diferencia cajas " & boxDiference)
-        'Debug.Print("Porcentaje Servicio " & servicePercent)
-        'Debug.Print("$ pedidos " & amountOrdered)
-        'Debug.Print("$ entregados " & amountDeliviered)
-        'Debug.Print("$ perdidos " & amountLost)
     End Sub
 
     Private Sub missing_Items(ByRef list As Hashtable)
@@ -88,8 +70,6 @@ Class fill_rate
                 Dim ordered As Integer = order / get_cell(row, 9)
                 Dim delivered As Integer = delivery / get_cell(row, 10)
                 list.Add(get_cell(row, 2) & get_cell(row, 6), ordered - delivered)
-
-                'Debug.Print("   Faltan " & ordered - delivered & " de " & get_cell(row, 6))
             End If
             row += 1
         End While
@@ -105,8 +85,6 @@ Class fill_rate
                     Dim ordered As Integer = order / get_cell(row, 9)
                     Dim delivered As Integer = delivery / get_cell(row, 10)
                     list.Add(get_cell(row, 2) & get_cell(row, 6), ordered - delivered)
-
-                    'Debug.Print("   Faltan " & ordered - delivered & " de " & get_cell(row, 6))
                 End If
             End If
             row += 1
