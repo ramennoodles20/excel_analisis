@@ -4,11 +4,10 @@ Imports System.IO
 Imports System.Text
 Public Class pantallaPrincipal
 
-    Private fill_rate_file As New file()
+    Private fill_rate_file As file
     Dim analisis As Analisis
 
     Dim fillRateData As DataGridView = New DataGridView
-    Dim products As New List(Of String)
 
     Private CW As Integer = Me.Width ' Current Width
     Private CH As Integer = Me.Height ' Current Height
@@ -36,23 +35,19 @@ Public Class pantallaPrincipal
             ByVal e As System.EventArgs) Handles MyBase.Load
         IW = Me.Width
         IH = Me.Height
-        load_filters()
-    End Sub
-
-    Private Sub load_filters()
-        Dim reader As StreamReader = New StreamReader("C:\Users\Curso\Desktop\excel_analisis\fill rate filters.txt")
-        Do While reader.Peek() >= 0
-            Dim line As String = reader.ReadLine
-            add_new_filter(line)
-        Loop
-        reader.Close()
+        calendarFilter.MaxSelectionCount = 100
     End Sub
 
     Private Sub FillRateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FillRateToolStripMenuItem.Click
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
-            fill_rate_file.path = OpenFileDialog1.FileName
-            fill_rate_file.open_File()
+            fill_rate_file = New file(OpenFileDialog1.FileName)
             analisis = New fill_rate(fill_rate_file)
+            showFillRateFile()
+        End If
+    End Sub
+
+    Private Sub Calendar_DateChanged(sender As Object, e As MouseEventArgs) Handles calendarFilter.MouseUp
+        If Not (IsNothing(Me.fill_rate_file)) Then
             showFillRateFile()
         End If
     End Sub
@@ -84,6 +79,7 @@ Public Class pantallaPrincipal
         fillRateData.Rows(0).Cells(6).Value = "Recibido $"
         fillRateData.Rows(0).Cells(7).Value = "Faltante $"
         fillRateData.Rows(5).Cells(0).Value = "FALTANTES"
+        fillRateData.Rows(5).Cells(3).Value = "PENDIENTES"
 
         'show grid 
         fill_rate.Controls.Add(fillRateData)
@@ -91,18 +87,25 @@ Public Class pantallaPrincipal
 
     Private Sub showFillRateFile()
         resetDataGrid()
-        analyzeProductResults()
-        totalProducts()
+        'get the selected date
+        Dim dateEnd As Date = calendarFilter.SelectionRange.End
+        'get the brands in file
+        Dim brands() As String = analisis.getBrands()
+        analyzeProductResults(dateEnd, brands)
+        totalProducts(brands)
     End Sub
 
-    Private Sub analyzeProductResults()
-        For Each product In products
+    Private Sub analyzeProductResults(ByVal endDate As Date, ByVal brands() As String)
+        'used to store pending items since showMissingProducts will add new rows and lower the results 
+        Dim pending As Hashtable = New Hashtable()
+        For Each brand In brands
             'add row to fill with product results
             fillRateData.Rows.Insert(1, 1)
             'get product results 
-            analisis.analyze(product)
+            analisis.analyze(brand, endDate)
             Dim results As Hashtable = analisis.values
             'show product results
+            fillRateData.Rows(1).Cells(0).Value = brand
             fillRateData.Rows(1).Cells(1).Value = results.Item("boxesOrdered")
             fillRateData.Rows(1).Cells(2).Value = results.Item("boxesDelivered")
             fillRateData.Rows(1).Cells(3).Value = results.Item("boxDiference")
@@ -110,8 +113,12 @@ Public Class pantallaPrincipal
             fillRateData.Rows(1).Cells(5).Value = results.Item("amountOrdered")
             fillRateData.Rows(1).Cells(6).Value = results.Item("amountDelivered")
             fillRateData.Rows(1).Cells(7).Value = results.Item("amountLost")
+            'show missing products for specific brand
             showMissingProducts(analisis.values.Item("missingItems"))
+            'add brand and pending items to display after for loop 
+            pending.Add(brand, results.Item("pendingItems"))
         Next
+        showPendingProducts(pending)
     End Sub
 
     Private Sub showMissingProducts(ByVal items As Hashtable)
@@ -126,30 +133,37 @@ Public Class pantallaPrincipal
         Next
     End Sub
 
-    Private Sub totalProducts()
-        fillRateData.Rows.Insert(products.Count + 1, 1)
-        For row As Integer = 1 To products.Count
+    Private Sub showPendingProducts(ByVal hash As Hashtable)
+        'add enough rows to display all products
+        If (fillRateData.RowCount < 8 + hash.Keys.Count) Then
+            fillRateData.RowCount += hash.Keys.Count + 1
+        End If
+        Dim row As Integer = 6 + hash.Keys.Count
+        For Each key In hash.Keys
+            fillRateData.Rows(row).Cells(3).Value = key
+            fillRateData.Rows(row).Cells(4).Value = hash.Item(key)
+            row += 1
+        Next
+    End Sub
+
+    Private Sub totalProducts(ByVal brands() As String)
+        fillRateData.Rows.Insert(brands.Count + 1, 1)
+        fillRateData.Rows(brands.Count + 1).Cells(0).Value = "TOTAL"
+        For row As Integer = 1 To brands.Count
             For column As Integer = 1 To 7
-                fillRateData.Rows(products.Count + 1).Cells(column).Value += fillRateData.Rows(row).Cells(column).Value
+                fillRateData.Rows(brands.Count + 1).Cells(column).Value += fillRateData.Rows(row).Cells(column).Value
             Next
         Next
         'service percent is calculated differently 
-        fillRateData.Rows(products.Count + 1).Cells(4).Value = (fillRateData.Rows(products.Count + 1).Cells(2).Value / fillRateData.Rows(products.Count + 1).Cells(1).Value) * 100
+        fillRateData.Rows(brands.Count + 1).Cells(4).Value = calculate_servicePercent(brands.Count)
     End Sub
 
-
-    Private Sub add_new_filter(ByVal text As String)
-        Dim filterItem As New filterItem(text)
-        filterList.Controls.Add(filterItem)
-        products.Add(text)
-    End Sub
-
-    Private Sub add_filter_Click(sender As Object, e As EventArgs) Handles add_filter.Click
-        add_new_filter(filter_text.Text)
-        showFillRateFile()
-    End Sub
-
-    Private Sub filter_removed(ByVal sender As Object, ByVal e As System.Windows.Forms.ControlEventArgs) Handles filterList.ControlRemoved
-        products.Remove(e.Control.Name)
-    End Sub
+    Private Function calculate_servicePercent(ByVal number As Integer)
+        Dim sum As Double = 0
+        For row As Integer = 1 To number
+            sum += fillRateData.Rows(row).Cells(4).Value
+        Next
+        Debug.Print(sum)
+        Return sum / number
+    End Function
 End Class

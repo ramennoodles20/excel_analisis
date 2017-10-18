@@ -22,10 +22,5 @@ excel_analisis
   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
 </summary>
 </member>
-<member name="P:excel_analisis.My.Resources.Resources.filterIcon">
-<summary>
-  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-</summary>
-</member>
 </members>
 </doc>

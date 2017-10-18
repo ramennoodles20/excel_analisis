@@ -25,9 +25,7 @@ Partial Class pantallaPrincipal
         Me.Tab_Principal = New System.Windows.Forms.TabControl()
         Me.fill_rate = New System.Windows.Forms.TabPage()
         Me.toolPanel = New System.Windows.Forms.Panel()
-        Me.filter_text = New System.Windows.Forms.TextBox()
-        Me.add_filter = New System.Windows.Forms.Button()
-        Me.filterList = New System.Windows.Forms.FlowLayoutPanel()
+        Me.calendarFilter = New System.Windows.Forms.MonthCalendar()
         Me.visualizacion = New System.Windows.Forms.TabPage()
         Me.viewPort = New System.Windows.Forms.DataGridView()
         Me.Procedimiento = New System.Windows.Forms.TabPage()
@@ -78,43 +76,20 @@ Partial Class pantallaPrincipal
         '
         'toolPanel
         '
-        Me.toolPanel.Controls.Add(Me.filter_text)
-        Me.toolPanel.Controls.Add(Me.add_filter)
-        Me.toolPanel.Controls.Add(Me.filterList)
+        Me.toolPanel.Controls.Add(Me.calendarFilter)
         Me.toolPanel.Dock = System.Windows.Forms.DockStyle.Top
         Me.toolPanel.Location = New System.Drawing.Point(3, 3)
         Me.toolPanel.Name = "toolPanel"
         Me.toolPanel.Size = New System.Drawing.Size(891, 238)
         Me.toolPanel.TabIndex = 3
         '
-        'filter_text
+        'calendarFilter
         '
-        Me.filter_text.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.filter_text.Location = New System.Drawing.Point(3, 12)
-        Me.filter_text.Name = "filter_text"
-        Me.filter_text.Size = New System.Drawing.Size(129, 20)
-        Me.filter_text.TabIndex = 1
-        '
-        'add_filter
-        '
-        Me.add_filter.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.add_filter.Image = Global.excel_analisis.My.Resources.Resources.filterIcon
-        Me.add_filter.ImageAlign = System.Drawing.ContentAlignment.TopRight
-        Me.add_filter.Location = New System.Drawing.Point(138, 12)
-        Me.add_filter.Name = "add_filter"
-        Me.add_filter.Size = New System.Drawing.Size(20, 20)
-        Me.add_filter.TabIndex = 2
-        Me.add_filter.UseVisualStyleBackColor = True
-        '
-        'filterList
-        '
-        Me.filterList.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.filterList.AutoScroll = True
-        Me.filterList.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.filterList.Location = New System.Drawing.Point(2, 38)
-        Me.filterList.Name = "filterList"
-        Me.filterList.Size = New System.Drawing.Size(156, 172)
-        Me.filterList.TabIndex = 0
+        Me.calendarFilter.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.calendarFilter.Location = New System.Drawing.Point(321, 9)
+        Me.calendarFilter.MaxSelectionCount = 400
+        Me.calendarFilter.Name = "calendarFilter"
+        Me.calendarFilter.TabIndex = 0
         '
         'visualizacion
         '
@@ -260,7 +235,6 @@ Partial Class pantallaPrincipal
         Me.Tab_Principal.ResumeLayout(False)
         Me.fill_rate.ResumeLayout(False)
         Me.toolPanel.ResumeLayout(False)
-        Me.toolPanel.PerformLayout()
         Me.visualizacion.ResumeLayout(False)
         CType(Me.viewPort, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Procedimiento.ResumeLayout(False)
@@ -288,8 +262,6 @@ Partial Class pantallaPrincipal
     Friend WithEvents Visualizar As Button
     Friend WithEvents FillRateToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StockRotationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents filterList As FlowLayoutPanel
-    Friend WithEvents add_filter As Button
-    Friend WithEvents filter_text As TextBox
     Friend WithEvents toolPanel As Panel
+    Friend WithEvents calendarFilter As MonthCalendar
 End Class

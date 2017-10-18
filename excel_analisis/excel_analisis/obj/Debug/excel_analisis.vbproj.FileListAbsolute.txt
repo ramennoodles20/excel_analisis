@@ -32,4 +32,3 @@ C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\ex
 C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.GenerateResource.Cache
 C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.ResolveComReference.cache
 C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbprojResolveAssemblyReference.cache
-C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.filterItem.resources

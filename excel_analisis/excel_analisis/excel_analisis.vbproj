@@ -75,12 +75,6 @@
     <Compile Include="Analisis.vb" />
     <Compile Include="fill_rate.vb" />
     <Compile Include="file.vb" />
-    <Compile Include="filterItem.Designer.vb">
-      <DependentUpon>filterItem.vb</DependentUpon>
-    </Compile>
-    <Compile Include="filterItem.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -105,9 +99,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="filterItem.resx">
-      <DependentUpon>filterItem.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="pantallaPrincipal.resx">
       <DependentUpon>pantallaPrincipal.vb</DependentUpon>
     </EmbeddedResource>
@@ -158,12 +149,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\searchIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\filterIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
