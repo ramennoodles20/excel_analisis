@@ -9,8 +9,8 @@ MustInherit Class Analisis
         Me.file = pFile
     End Sub
 
-    MustOverride Sub analyze(ByVal filter As String, ByVal endDate As Date)
-
+    MustOverride Overloads Sub analyze(ByVal filter As String, ByVal endDate As Date)
+    MustOverride Overloads Sub analyze()
     Protected Function sum_division(ByVal column1 As Integer, ByVal column2 As Integer)
         Dim result As Integer = 0
         For row As Integer = 0 To file.table.Rows.Count - 1

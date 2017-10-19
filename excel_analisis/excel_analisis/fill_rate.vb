@@ -7,11 +7,15 @@ Class fill_rate
         MyBase.New(pFile)
     End Sub
 
+    Public Overrides Sub analyze()
+        MsgBox("No ha escogido un rango de fecha")
+    End Sub
+
     Overrides Sub analyze(ByVal brand As String, ByVal endDate As Date)
         file.make_query(
                         " SELECT  [Whse Qty Ordered (eaches)], [WHPK Qty], [Whse Qty Received (eaches)], [VNPK Qty], [Unit Cost]" &
                         " FROM " & file.activeTable &
-                        " WHERE ([PO Cancel Date] <= '" & endDate.ToString("MM/dd/yyyy") & "')" &
+                        " WHERE ([PO Cancel Date] < '" & endDate.ToString("MM/dd/yyyy") & "')" &
                         " AND ([Brand Desc] = '" & brand & "')"
                         )
 

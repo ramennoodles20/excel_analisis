@@ -1,10 +1,12 @@
-﻿Imports Excel = Microsoft.Office.Interop.Excel
-Imports System
+﻿Imports System
 Imports System.IO
 Imports System.Text
 Public Class pantallaPrincipal
 
     Private fill_rate_file As file
+    Dim fill_rate_analisis As Analisis
+
+    Private stock_rotation_file As file
     Dim analisis As Analisis
 
     Dim fillRateData As DataGridView = New DataGridView
@@ -41,8 +43,16 @@ Public Class pantallaPrincipal
     Private Sub FillRateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FillRateToolStripMenuItem.Click
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             fill_rate_file = New file(OpenFileDialog1.FileName)
-            analisis = New fill_rate(fill_rate_file)
+            fill_rate_analisis = New fill_rate(fill_rate_file)
             showFillRateFile()
+        End If
+    End Sub
+
+    Private Sub StockRotationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StockRotationToolStripMenuItem.Click
+        If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
+            stock_rotation_file = New file(OpenFileDialog1.FileName)
+            analisis = New stock_rotation(stock_rotation_file)
+            showStockRotationFile()
         End If
     End Sub
 
@@ -50,6 +60,10 @@ Public Class pantallaPrincipal
         If Not (IsNothing(Me.fill_rate_file)) Then
             showFillRateFile()
         End If
+    End Sub
+
+    Private Sub showStockRotationFile()
+        analisis.analyze()
     End Sub
 
     Private Sub resetDataGrid()
@@ -85,16 +99,18 @@ Public Class pantallaPrincipal
         fill_rate.Controls.Add(fillRateData)
     End Sub
 
+    'shows the fill rate analisis (calls ALL necessary functions)
     Private Sub showFillRateFile()
         resetDataGrid()
         'get the selected date
         Dim dateEnd As Date = calendarFilter.SelectionRange.End
         'get the brands in file
-        Dim brands() As String = analisis.getBrands()
+        Dim brands() As String = fill_rate_analisis.getBrands()
         analyzeProductResults(dateEnd, brands)
         totalProducts(brands)
     End Sub
 
+    'analyzes products in fill rate file one by one
     Private Sub analyzeProductResults(ByVal endDate As Date, ByVal brands() As String)
         'used to store pending items since showMissingProducts will add new rows and lower the results 
         Dim pending As Hashtable = New Hashtable()
@@ -102,8 +118,8 @@ Public Class pantallaPrincipal
             'add row to fill with product results
             fillRateData.Rows.Insert(1, 1)
             'get product results 
-            analisis.analyze(brand, endDate)
-            Dim results As Hashtable = analisis.values
+            fill_rate_analisis.analyze(brand, endDate)
+            Dim results As Hashtable = fill_rate_analisis.values
             'show product results
             fillRateData.Rows(1).Cells(0).Value = brand
             fillRateData.Rows(1).Cells(1).Value = results.Item("boxesOrdered")
@@ -114,7 +130,7 @@ Public Class pantallaPrincipal
             fillRateData.Rows(1).Cells(6).Value = results.Item("amountDelivered")
             fillRateData.Rows(1).Cells(7).Value = results.Item("amountLost")
             'show missing products for specific brand
-            showMissingProducts(analisis.values.Item("missingItems"))
+            showMissingProducts(fill_rate_analisis.values.Item("missingItems"))
             'add brand and pending items to display after for loop 
             pending.Add(brand, results.Item("pendingItems"))
         Next
@@ -146,6 +162,7 @@ Public Class pantallaPrincipal
         Next
     End Sub
 
+    'adds all product values into one row 
     Private Sub totalProducts(ByVal brands() As String)
         fillRateData.Rows.Insert(brands.Count + 1, 1)
         fillRateData.Rows(brands.Count + 1).Cells(0).Value = "TOTAL"
@@ -166,4 +183,6 @@ Public Class pantallaPrincipal
         Debug.Print(sum)
         Return sum / number
     End Function
+
+
 End Class

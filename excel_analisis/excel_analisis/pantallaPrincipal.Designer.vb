@@ -24,10 +24,10 @@ Partial Class pantallaPrincipal
     Private Sub InitializeComponent()
         Me.Tab_Principal = New System.Windows.Forms.TabControl()
         Me.fill_rate = New System.Windows.Forms.TabPage()
-        Me.toolPanel = New System.Windows.Forms.Panel()
+        Me.fill_Rate_Tab = New System.Windows.Forms.Panel()
         Me.calendarFilter = New System.Windows.Forms.MonthCalendar()
         Me.visualizacion = New System.Windows.Forms.TabPage()
-        Me.viewPort = New System.Windows.Forms.DataGridView()
+        Me.stock_Rotation_Tab = New System.Windows.Forms.DataGridView()
         Me.Procedimiento = New System.Windows.Forms.TabPage()
         Me.Visualizar = New System.Windows.Forms.Button()
         Me.operacion = New System.Windows.Forms.ComboBox()
@@ -43,9 +43,9 @@ Partial Class pantallaPrincipal
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Tab_Principal.SuspendLayout()
         Me.fill_rate.SuspendLayout()
-        Me.toolPanel.SuspendLayout()
+        Me.fill_Rate_Tab.SuspendLayout()
         Me.visualizacion.SuspendLayout()
-        CType(Me.viewPort, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.stock_Rotation_Tab, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Procedimiento.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -65,7 +65,7 @@ Partial Class pantallaPrincipal
         'fill_rate
         '
         Me.fill_rate.AutoScroll = True
-        Me.fill_rate.Controls.Add(Me.toolPanel)
+        Me.fill_rate.Controls.Add(Me.fill_Rate_Tab)
         Me.fill_rate.Location = New System.Drawing.Point(4, 22)
         Me.fill_rate.Name = "fill_rate"
         Me.fill_rate.Padding = New System.Windows.Forms.Padding(3)
@@ -74,14 +74,14 @@ Partial Class pantallaPrincipal
         Me.fill_rate.Text = "Fill Rate"
         Me.fill_rate.UseVisualStyleBackColor = True
         '
-        'toolPanel
+        'fill_Rate_Tab
         '
-        Me.toolPanel.Controls.Add(Me.calendarFilter)
-        Me.toolPanel.Dock = System.Windows.Forms.DockStyle.Top
-        Me.toolPanel.Location = New System.Drawing.Point(3, 3)
-        Me.toolPanel.Name = "toolPanel"
-        Me.toolPanel.Size = New System.Drawing.Size(891, 238)
-        Me.toolPanel.TabIndex = 3
+        Me.fill_Rate_Tab.Controls.Add(Me.calendarFilter)
+        Me.fill_Rate_Tab.Dock = System.Windows.Forms.DockStyle.Top
+        Me.fill_Rate_Tab.Location = New System.Drawing.Point(3, 3)
+        Me.fill_Rate_Tab.Name = "fill_Rate_Tab"
+        Me.fill_Rate_Tab.Size = New System.Drawing.Size(891, 238)
+        Me.fill_Rate_Tab.TabIndex = 3
         '
         'calendarFilter
         '
@@ -93,7 +93,7 @@ Partial Class pantallaPrincipal
         '
         'visualizacion
         '
-        Me.visualizacion.Controls.Add(Me.viewPort)
+        Me.visualizacion.Controls.Add(Me.stock_Rotation_Tab)
         Me.visualizacion.Location = New System.Drawing.Point(4, 22)
         Me.visualizacion.Name = "visualizacion"
         Me.visualizacion.Padding = New System.Windows.Forms.Padding(3)
@@ -102,14 +102,14 @@ Partial Class pantallaPrincipal
         Me.visualizacion.Text = "Visualización"
         Me.visualizacion.UseVisualStyleBackColor = True
         '
-        'viewPort
+        'stock_Rotation_Tab
         '
-        Me.viewPort.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.viewPort.Dock = System.Windows.Forms.DockStyle.Top
-        Me.viewPort.Location = New System.Drawing.Point(3, 3)
-        Me.viewPort.Name = "viewPort"
-        Me.viewPort.Size = New System.Drawing.Size(891, 402)
-        Me.viewPort.TabIndex = 1
+        Me.stock_Rotation_Tab.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.stock_Rotation_Tab.Dock = System.Windows.Forms.DockStyle.Top
+        Me.stock_Rotation_Tab.Location = New System.Drawing.Point(3, 3)
+        Me.stock_Rotation_Tab.Name = "stock_Rotation_Tab"
+        Me.stock_Rotation_Tab.Size = New System.Drawing.Size(891, 402)
+        Me.stock_Rotation_Tab.TabIndex = 1
         '
         'Procedimiento
         '
@@ -208,13 +208,13 @@ Partial Class pantallaPrincipal
         'FillRateToolStripMenuItem
         '
         Me.FillRateToolStripMenuItem.Name = "FillRateToolStripMenuItem"
-        Me.FillRateToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
+        Me.FillRateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.FillRateToolStripMenuItem.Text = "Fill Rate "
         '
         'StockRotationToolStripMenuItem
         '
         Me.StockRotationToolStripMenuItem.Name = "StockRotationToolStripMenuItem"
-        Me.StockRotationToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
+        Me.StockRotationToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.StockRotationToolStripMenuItem.Text = "Stock Rotation"
         '
         'OpenFileDialog1
@@ -234,9 +234,9 @@ Partial Class pantallaPrincipal
         Me.Text = "Form1"
         Me.Tab_Principal.ResumeLayout(False)
         Me.fill_rate.ResumeLayout(False)
-        Me.toolPanel.ResumeLayout(False)
+        Me.fill_Rate_Tab.ResumeLayout(False)
         Me.visualizacion.ResumeLayout(False)
-        CType(Me.viewPort, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.stock_Rotation_Tab, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Procedimiento.ResumeLayout(False)
         Me.Procedimiento.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
@@ -252,7 +252,7 @@ Partial Class pantallaPrincipal
     Friend WithEvents ArchivoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NuevaPlantillaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AnalizarArchivoToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents viewPort As DataGridView
+    Friend WithEvents stock_Rotation_Tab As DataGridView
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents Tab_Principal As TabControl
     Friend WithEvents Procedimiento As TabPage
@@ -262,6 +262,6 @@ Partial Class pantallaPrincipal
     Friend WithEvents Visualizar As Button
     Friend WithEvents FillRateToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StockRotationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents toolPanel As Panel
+    Friend WithEvents fill_Rate_Tab As Panel
     Friend WithEvents calendarFilter As MonthCalendar
 End Class
