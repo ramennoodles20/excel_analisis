@@ -40,9 +40,7 @@ Public Class file
         For i = 0 To userTables.Rows.Count - 1
             Dim tempTable As String = userTables.Rows(i)(2).ToString()
             If Not (tempTable.Contains("MSys")) Then
-                Debug.Print(tempTable)
                 firstTable = "[" & tempTable & "]"
-                Debug.Print("mi tabla es" & firstTable)
             End If
         Next
         myConnection.Close()
