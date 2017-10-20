@@ -1,0 +1,35 @@
+Tiendas HM donde Four Loko esta OK
+
+SELECT        COUNT([Brand Desc]) AS productCount
+FROM            [Stock Rotation EM 2]
+WHERE        ([Financial Rpt Code] = 'HM') AND ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] > 0) AND ([Brand Desc] = 'FOUR LOKO')
+
+Tiendas HM donde FOUR LOKO esta Out of stock
+
+SELECT        COUNT([Brand Desc]) AS productCount
+FROM            [Stock Rotation EM 2]
+WHERE        ([Financial Rpt Code] = 'HM') AND ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] <= 0) AND ([Range 4 Curr On Hand Qty <= 0) AND ([Brand Desc] = 'FOUR LOKO')
+
+Tiendas HM donde FOUR LOKO esta No Rotation
+
+SELECT        COUNT([Brand Desc]) AS productCount
+FROM            [Stock Rotation EM 2]
+WHERE        ([Financial Rpt Code] = 'HM') AND ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] <= 0) AND ([Range 4 Curr On Hand Qty > 0) AND ([Brand Desc] = 'FOUR LOKO')
+
+
+Tiendas HM donde hay FOUR LOKO
+
+SELECT        COUNT([Brand Desc]) AS productCount
+FROM            [Stock Rotation EM 2]
+WHERE        ([Financial Rpt Code] = 'HM') AND ([Brand Desc] = 'FOUR LOKO')
+
+for marca
+	crear hash marca
+	for tipo tienda 
+		crear hash tipo tienda
+		buscar tienda con marca
+		buscar tienda con marca que este ok
+		buscar tienda con marca que este out of stock
+		buscar tienda con marca que este no rotation 
+		tipotienda.add("OK", porcentaje)
+	brands.add(hashmarca, hash tipotienda)

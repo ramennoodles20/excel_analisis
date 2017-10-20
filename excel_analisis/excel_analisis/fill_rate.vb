@@ -7,7 +7,7 @@ Class fill_rate
         MyBase.New(pFile)
     End Sub
 
-    Public Overrides Sub analyze()
+    Public Overrides Sub analyze(ByVal routes As String)
         MsgBox("No ha escogido un rango de fecha")
     End Sub
 

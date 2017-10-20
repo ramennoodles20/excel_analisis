@@ -10,6 +10,7 @@ Public Class pantallaPrincipal
     Dim analisis As Analisis
 
     Dim fillRateData As DataGridView = New DataGridView
+    Dim stockRotationData As DataGridView = New DataGridView
 
     Private CW As Integer = Me.Width ' Current Width
     Private CH As Integer = Me.Height ' Current Height
@@ -37,7 +38,6 @@ Public Class pantallaPrincipal
             ByVal e As System.EventArgs) Handles MyBase.Load
         IW = Me.Width
         IH = Me.Height
-        calendarFilter.MaxSelectionCount = 100
     End Sub
 
     Private Sub FillRateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FillRateToolStripMenuItem.Click
@@ -63,10 +63,98 @@ Public Class pantallaPrincipal
     End Sub
 
     Private Sub showStockRotationFile()
-        analisis.analyze()
+        resetStockRotationDataGrid()
+        Dim button As RadioButton = stock_rotation_control.Controls.OfType(Of RadioButton).FirstOrDefault(Function(r) r.Checked = True)
+        analisis.analyze(button.Tag)
+        show_stock_rotation_results()
     End Sub
 
-    Private Sub resetDataGrid()
+    Private Sub show_stock_rotation_results()
+        Dim results As DataTable = analisis.values("base")
+        stockRotationData.RowCount += results.Rows.Count
+        For row As Integer = 0 To results.Rows.Count - 1
+            stockRotationData.Rows(row + 1).Cells(0).Value = results.Rows(row)("Brand Desc")
+            stockRotationData.Rows(row + 1).Cells(1).Value = results.Rows(row)("Item Nbr")
+            stockRotationData.Rows(row + 1).Cells(2).Value = results.Rows(row)("Signing Desc")
+            stockRotationData.Rows(row + 1).Cells(3).Value = results.Rows(row)("Item Status")
+            stockRotationData.Rows(row + 1).Cells(4).Value = results.Rows(row)("Item Type")
+            stockRotationData.Rows(row + 1).Cells(5).Value = results.Rows(row)("Store Nbr")
+            stockRotationData.Rows(row + 1).Cells(6).Value = results.Rows(row)("Store Name")
+            stockRotationData.Rows(row + 1).Cells(7).Value = results.Rows(row)("Financial Rpt Code")
+            stockRotationData.Rows(row + 1).Cells(8).Value = results.Rows(row)("Range 1 POS Qty")
+            stockRotationData.Rows(row + 1).Cells(9).Value = results.Rows(row)("Range 2 POS Qty")
+            stockRotationData.Rows(row + 1).Cells(10).Value = results.Rows(row)("Range 3 POS Qty")
+            stockRotationData.Rows(row + 1).Cells(11).Value = results.Rows(row)("Range 4 POS Qty")
+            stockRotationData.Rows(row + 1).Cells(12).Value = results.Rows(row)("Sales")
+            stockRotationData.Rows(row + 1).Cells(13).Value = results.Rows(row)("Range 4 Curr Str On Hand Qty")
+            stockRotationData.Rows(row + 1).Cells(14).Value = results.Rows(row)("Rotation")
+        Next
+    End Sub
+
+    Private Sub resetStockRotationDataGrid()
+        stockRotationData.RowCount = 1
+        stockRotationData.RowCount = 1
+
+        stockRotationData.RowCount = 2
+        stockRotationData.ColumnCount = 18
+        stockRotationData.Dock = DockStyle.Top
+        stockRotationData.Height = 400
+        stockRotationData.RowHeadersVisible = False
+        stockRotationData.ColumnHeadersVisible = False
+
+        stockRotationData.Rows(0).Cells(0).Value = "Brand"
+        stockRotationData.Rows(0).Cells(1).Value = "Item Nbr"
+        stockRotationData.Rows(0).Cells(2).Value = "Signing Desc"
+        stockRotationData.Rows(0).Cells(3).Value = "Status"
+        stockRotationData.Rows(0).Cells(4).Value = "Type"
+        stockRotationData.Rows(0).Cells(5).Value = "Store Nbr"
+        stockRotationData.Rows(0).Cells(6).Value = "Store Name"
+        stockRotationData.Rows(0).Cells(7).Value = "Rpt"
+        stockRotationData.Rows(0).Cells(8).Value = past_weeks(4, stock_rotation_file)
+        stockRotationData.Rows(0).Cells(9).Value = past_weeks(3, stock_rotation_file)
+        stockRotationData.Rows(0).Cells(10).Value = past_weeks(2, stock_rotation_file)
+        stockRotationData.Rows(0).Cells(11).Value = past_weeks(1, stock_rotation_file)
+        stockRotationData.Rows(0).Cells(12).Value = "Sales"
+        stockRotationData.Rows(0).Cells(13).Value = "Inventario " & Date.Now.AddDays(-1).ToString("dd/MM")
+        stockRotationData.Rows(0).Cells(14).Value = "Rotacion"
+        stockRotationData.Rows(0).Cells(15).Value = "EDD"
+        stockRotationData.Rows(0).Cells(16).Value = "Agente"
+        stockRotationData.Rows(0).Cells(17).Value = "Merca"
+
+        stock_Rotation_Tab.Controls.Add(stockRotationData)
+
+    End Sub
+
+    'gives the date of [weeks] past fridays since file creatio date as string 
+    Private Function past_weeks(ByVal weeks As Integer, ByVal file As file)
+        Dim objFileInfo As New FileInfo(file.path)
+        Dim createDate As Date = objFileInfo.CreationTime
+
+        Dim today As Date = Now
+
+        For week As Integer = 1 To weeks
+            While today.DayOfWeek <> DayOfWeek.Saturday
+                today = today.AddDays(-1)
+                Debug.Print(today.ToString("dd/MM/yyyy"))
+            End While
+            today = today.AddDays(-1)
+        Next
+
+        Return today.ToString("dd/MM/yyyy")
+    End Function
+
+    'shows the fill rate analisis (calls ALL necessary functions)
+    Private Sub showFillRateFile()
+        resetFillRateDataGrid()
+        'get the selected date
+        Dim dateEnd As Date = calendarFilter.SelectionRange.End
+        'get the brands in file
+        Dim brands() As String = fill_rate_analisis.getBrands()
+        analyze_fill_rate_results(dateEnd, brands)
+        totalProducts(brands)
+    End Sub
+
+    Private Sub resetFillRateDataGrid()
         fillRateData.RowCount = 1
         fillRateData.ColumnCount = 1
 
@@ -99,19 +187,8 @@ Public Class pantallaPrincipal
         fill_rate.Controls.Add(fillRateData)
     End Sub
 
-    'shows the fill rate analisis (calls ALL necessary functions)
-    Private Sub showFillRateFile()
-        resetDataGrid()
-        'get the selected date
-        Dim dateEnd As Date = calendarFilter.SelectionRange.End
-        'get the brands in file
-        Dim brands() As String = fill_rate_analisis.getBrands()
-        analyzeProductResults(dateEnd, brands)
-        totalProducts(brands)
-    End Sub
-
     'analyzes products in fill rate file one by one
-    Private Sub analyzeProductResults(ByVal endDate As Date, ByVal brands() As String)
+    Private Sub analyze_fill_rate_results(ByVal endDate As Date, ByVal brands() As String)
         'used to store pending items since showMissingProducts will add new rows and lower the results 
         Dim pending As Hashtable = New Hashtable()
         For Each brand In brands
@@ -183,6 +260,5 @@ Public Class pantallaPrincipal
         Debug.Print(sum)
         Return sum / number
     End Function
-
 
 End Class
