@@ -14,7 +14,7 @@ Tiendas HM donde FOUR LOKO esta No Rotation
 
 SELECT        COUNT([Brand Desc]) AS productCount
 FROM            [Stock Rotation EM 2]
-WHERE        ([Financial Rpt Code] = 'HM') AND ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] <= 0) AND ([Range 4 Curr On Hand Qty > 0) AND ([Brand Desc] = 'FOUR LOKO')
+WHERE        ([Financial Rpt Code] = 'HM') AND ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] = 0) AND ([Range 4 Curr Str On Hand Qty] > 0) AND ([Brand Desc] = 'FOUR LOKO')
 
 
 Tiendas HM donde hay FOUR LOKO
@@ -33,3 +33,43 @@ for marca
 		buscar tienda con marca que este no rotation 
 		tipotienda.add("OK", porcentaje)
 	brands.add(hashmarca, hash tipotienda)
+
+
+#################################################################################################################################################################################################################
+Tiendas de Jose Briones 
+SELECT        COUNT([Agente]) as stores
+FROM            (C:\Users\NataliaPC\Desktop\excel_analisis\RUTAS.mdb.RUTAS rutas INNER JOIN
+                         C:\Users\NataliaPC\Desktop\excel_analisis\STOCK_ROTATION_TESTER.mdb.[Stock Rotation EM 2] stock ON rutas.[Store Nbr] = stock.[Store Nbr])
+WHERE        (Agente = 'Jose Briones')
+
+Tiendas de Jose Briones con status ok
+SELECT        COUNT([Agente]) as stores
+FROM            (C:\Users\NataliaPC\Desktop\excel_analisis\RUTAS.mdb.RUTAS rutas INNER JOIN
+                         C:\Users\NataliaPC\Desktop\excel_analisis\STOCK_ROTATION_TESTER.mdb.[Stock Rotation EM 2] stock ON rutas.[Store Nbr] = stock.[Store Nbr])
+WHERE        (Agente = 'Jose Briones') AND ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] > 0)
+
+Tiendas de Jose Briones con status No Rotation
+SELECT        COUNT([Agente]) as stores
+FROM            (C:\Users\NataliaPC\Desktop\excel_analisis\RUTAS.mdb.RUTAS rutas INNER JOIN
+                         C:\Users\NataliaPC\Desktop\excel_analisis\STOCK_ROTATION_TESTER.mdb.[Stock Rotation EM 2] stock ON rutas.[Store Nbr] = stock.[Store Nbr])
+WHERE        (Agente = 'Jose Briones') AND ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] <= 0) AND ([Range 4 Curr Str On Hand Qty] > 0)
+
+Tiendas Jose Briones con status Out of Stock 
+SELECT        COUNT([Agente]) as stores
+FROM            (C:\Users\NataliaPC\Desktop\excel_analisis\RUTAS.mdb.RUTAS rutas INNER JOIN
+                         C:\Users\NataliaPC\Desktop\excel_analisis\STOCK_ROTATION_TESTER.mdb.[Stock Rotation EM 2] stock ON rutas.[Store Nbr] = stock.[Store Nbr])
+WHERE        (Agente = 'Jose Briones') AND ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] <= 0) AND ([Range 4 Curr Str On Hand Qty] < 0)
+
+#################################################################################################################################################################################################################
+Todas las tiendas junto con las tiendas no rotation 
+SELECT        t1.rutas.[Store Name], t1.Agente, t1.Merca, t1.NRstores, t2.totalStores, t1.NRstores / t2.totalStores * 100 AS percentage, t1.Zona
+FROM            ((SELECT        rutas.[Store Name], Agente, Merca, Zona, COUNT(rutas.[Store Name]) AS NRstores
+                            FROM            (C:\Users\NataliaPC\Desktop\excel_analisis\RUTAS.mdb.RUTAS rutas INNER JOIN
+                                                     C:\Users\NataliaPC\Desktop\excel_analisis\STOCK_ROTATION_TESTER.mdb.[Stock Rotation EM 2] stock ON rutas.[Store Nbr] = stock.[Store Nbr])
+                            WHERE        ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] > 0)
+                            GROUP BY rutas.[Store Name], Agente, Merca, Zona) t1 INNER JOIN
+                             (SELECT        rutas.[Store Name], Agente, Merca, Zona, COUNT(rutas.[Store Name]) AS totalStores
+                               FROM            (C:\Users\NataliaPC\Desktop\excel_analisis\RUTAS.mdb.RUTAS rutas INNER JOIN
+                                                         C:\Users\NataliaPC\Desktop\excel_analisis\STOCK_ROTATION_TESTER.mdb.[Stock Rotation EM 2] stock ON rutas.[Store Nbr] = stock.[Store Nbr])
+                               GROUP BY rutas.[Store Name], Agente, Merca, Zona) t2 ON t1.[Store Name] = t2.[Store Name])
+ORDER BY t1.Zona

@@ -32,3 +32,16 @@ C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\ex
 C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.GenerateResource.Cache
 C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.ResolveComReference.cache
 C:\Users\Curso\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbprojResolveAssemblyReference.cache
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.exe.config
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.exe
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.pdb
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.xml
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbprojResolveAssemblyReference.cache
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.ResolveComReference.cache
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.pantallaPrincipal.resources
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.Resources.resources
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.GenerateResource.Cache
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.CoreCompileInputs.cache
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.exe
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.xml
+C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.pdb

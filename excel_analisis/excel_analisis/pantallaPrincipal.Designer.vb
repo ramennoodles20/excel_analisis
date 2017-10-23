@@ -24,17 +24,12 @@ Partial Class pantallaPrincipal
     Private Sub InitializeComponent()
         Me.Tab_Principal = New System.Windows.Forms.TabControl()
         Me.fill_rate = New System.Windows.Forms.TabPage()
-        Me.fill_Rate_Tab = New System.Windows.Forms.Panel()
+        Me.fill_Rate_Panel = New System.Windows.Forms.Panel()
         Me.calendarFilter = New System.Windows.Forms.MonthCalendar()
-        Me.visualizacion = New System.Windows.Forms.TabPage()
-        Me.stock_rotation_control = New System.Windows.Forms.Panel()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.stock_Rotation_Tab = New System.Windows.Forms.DataGridView()
-        Me.Procedimiento = New System.Windows.Forms.TabPage()
+        Me.stock_Rotation_Data_Tab = New System.Windows.Forms.TabPage()
+        Me.stock_Rotation_Status_Tab = New System.Windows.Forms.TabPage()
         Me.Visualizar = New System.Windows.Forms.Button()
-        Me.operacion = New System.Windows.Forms.ComboBox()
         Me.guardar = New System.Windows.Forms.Button()
-        Me.agregarPaso = New System.Windows.Forms.Button()
         Me.lista_plantillas = New System.Windows.Forms.ListBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -45,11 +40,8 @@ Partial Class pantallaPrincipal
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Tab_Principal.SuspendLayout()
         Me.fill_rate.SuspendLayout()
-        Me.fill_Rate_Tab.SuspendLayout()
-        Me.visualizacion.SuspendLayout()
-        Me.stock_rotation_control.SuspendLayout()
-        CType(Me.stock_Rotation_Tab, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Procedimiento.SuspendLayout()
+        Me.fill_Rate_Panel.SuspendLayout()
+        Me.stock_Rotation_Status_Tab.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -57,8 +49,8 @@ Partial Class pantallaPrincipal
         '
         Me.Tab_Principal.AccessibleName = ""
         Me.Tab_Principal.Controls.Add(Me.fill_rate)
-        Me.Tab_Principal.Controls.Add(Me.visualizacion)
-        Me.Tab_Principal.Controls.Add(Me.Procedimiento)
+        Me.Tab_Principal.Controls.Add(Me.stock_Rotation_Data_Tab)
+        Me.Tab_Principal.Controls.Add(Me.stock_Rotation_Status_Tab)
         Me.Tab_Principal.Location = New System.Drawing.Point(216, 12)
         Me.Tab_Principal.Name = "Tab_Principal"
         Me.Tab_Principal.SelectedIndex = 0
@@ -68,7 +60,7 @@ Partial Class pantallaPrincipal
         'fill_rate
         '
         Me.fill_rate.AutoScroll = True
-        Me.fill_rate.Controls.Add(Me.fill_Rate_Tab)
+        Me.fill_rate.Controls.Add(Me.fill_Rate_Panel)
         Me.fill_rate.Location = New System.Drawing.Point(4, 22)
         Me.fill_rate.Name = "fill_rate"
         Me.fill_rate.Padding = New System.Windows.Forms.Padding(3)
@@ -77,14 +69,14 @@ Partial Class pantallaPrincipal
         Me.fill_rate.Text = "Fill Rate"
         Me.fill_rate.UseVisualStyleBackColor = True
         '
-        'fill_Rate_Tab
+        'fill_Rate_Panel
         '
-        Me.fill_Rate_Tab.Controls.Add(Me.calendarFilter)
-        Me.fill_Rate_Tab.Dock = System.Windows.Forms.DockStyle.Top
-        Me.fill_Rate_Tab.Location = New System.Drawing.Point(3, 3)
-        Me.fill_Rate_Tab.Name = "fill_Rate_Tab"
-        Me.fill_Rate_Tab.Size = New System.Drawing.Size(891, 238)
-        Me.fill_Rate_Tab.TabIndex = 3
+        Me.fill_Rate_Panel.Controls.Add(Me.calendarFilter)
+        Me.fill_Rate_Panel.Dock = System.Windows.Forms.DockStyle.Top
+        Me.fill_Rate_Panel.Location = New System.Drawing.Point(3, 3)
+        Me.fill_Rate_Panel.Name = "fill_Rate_Panel"
+        Me.fill_Rate_Panel.Size = New System.Drawing.Size(891, 238)
+        Me.fill_Rate_Panel.TabIndex = 3
         '
         'calendarFilter
         '
@@ -94,65 +86,28 @@ Partial Class pantallaPrincipal
         Me.calendarFilter.Name = "calendarFilter"
         Me.calendarFilter.TabIndex = 0
         '
-        'visualizacion
+        'stock_Rotation_Data_Tab
         '
-        Me.visualizacion.Controls.Add(Me.stock_rotation_control)
-        Me.visualizacion.Controls.Add(Me.stock_Rotation_Tab)
-        Me.visualizacion.Location = New System.Drawing.Point(4, 22)
-        Me.visualizacion.Name = "visualizacion"
-        Me.visualizacion.Padding = New System.Windows.Forms.Padding(3)
-        Me.visualizacion.Size = New System.Drawing.Size(897, 547)
-        Me.visualizacion.TabIndex = 1
-        Me.visualizacion.Text = "Visualización"
-        Me.visualizacion.UseVisualStyleBackColor = True
+        Me.stock_Rotation_Data_Tab.Location = New System.Drawing.Point(4, 22)
+        Me.stock_Rotation_Data_Tab.Name = "stock_Rotation_Data_Tab"
+        Me.stock_Rotation_Data_Tab.Padding = New System.Windows.Forms.Padding(3)
+        Me.stock_Rotation_Data_Tab.Size = New System.Drawing.Size(897, 547)
+        Me.stock_Rotation_Data_Tab.TabIndex = 1
+        Me.stock_Rotation_Data_Tab.Text = "Stock Rotation-Data"
+        Me.stock_Rotation_Data_Tab.UseVisualStyleBackColor = True
         '
-        'stock_rotation_control
+        'stock_Rotation_Status_Tab
         '
-        Me.stock_rotation_control.Controls.Add(Me.RadioButton1)
-        Me.stock_rotation_control.Dock = System.Windows.Forms.DockStyle.Left
-        Me.stock_rotation_control.Location = New System.Drawing.Point(3, 405)
-        Me.stock_rotation_control.Name = "stock_rotation_control"
-        Me.stock_rotation_control.Size = New System.Drawing.Size(200, 139)
-        Me.stock_rotation_control.TabIndex = 2
-        Me.stock_rotation_control.Tag = "C:\Users\Curso\Desktop\excel_analisis\RUTAS.xlsx"
-        '
-        'RadioButton1
-        '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.CausesValidation = False
-        Me.RadioButton1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.RadioButton1.Checked = True
-        Me.RadioButton1.Location = New System.Drawing.Point(129, 6)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(68, 17)
-        Me.RadioButton1.TabIndex = 1
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "ExtraMile"
-        Me.RadioButton1.UseVisualStyleBackColor = True
-        '
-        'stock_Rotation_Tab
-        '
-        Me.stock_Rotation_Tab.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.stock_Rotation_Tab.Dock = System.Windows.Forms.DockStyle.Top
-        Me.stock_Rotation_Tab.Location = New System.Drawing.Point(3, 3)
-        Me.stock_Rotation_Tab.Name = "stock_Rotation_Tab"
-        Me.stock_Rotation_Tab.Size = New System.Drawing.Size(891, 402)
-        Me.stock_Rotation_Tab.TabIndex = 1
-        '
-        'Procedimiento
-        '
-        Me.Procedimiento.AutoScroll = True
-        Me.Procedimiento.Controls.Add(Me.Visualizar)
-        Me.Procedimiento.Controls.Add(Me.operacion)
-        Me.Procedimiento.Controls.Add(Me.guardar)
-        Me.Procedimiento.Controls.Add(Me.agregarPaso)
-        Me.Procedimiento.Location = New System.Drawing.Point(4, 22)
-        Me.Procedimiento.Name = "Procedimiento"
-        Me.Procedimiento.Padding = New System.Windows.Forms.Padding(3)
-        Me.Procedimiento.Size = New System.Drawing.Size(897, 547)
-        Me.Procedimiento.TabIndex = 2
-        Me.Procedimiento.Text = "Procedimiento"
-        Me.Procedimiento.UseVisualStyleBackColor = True
+        Me.stock_Rotation_Status_Tab.AutoScroll = True
+        Me.stock_Rotation_Status_Tab.Controls.Add(Me.Visualizar)
+        Me.stock_Rotation_Status_Tab.Controls.Add(Me.guardar)
+        Me.stock_Rotation_Status_Tab.Location = New System.Drawing.Point(4, 22)
+        Me.stock_Rotation_Status_Tab.Name = "stock_Rotation_Status_Tab"
+        Me.stock_Rotation_Status_Tab.Padding = New System.Windows.Forms.Padding(3)
+        Me.stock_Rotation_Status_Tab.Size = New System.Drawing.Size(897, 547)
+        Me.stock_Rotation_Status_Tab.TabIndex = 2
+        Me.stock_Rotation_Status_Tab.Text = "Stock Rotation-Staus"
+        Me.stock_Rotation_Status_Tab.UseVisualStyleBackColor = True
         '
         'Visualizar
         '
@@ -165,17 +120,6 @@ Partial Class pantallaPrincipal
         Me.Visualizar.Text = "Visualizar"
         Me.Visualizar.UseVisualStyleBackColor = True
         '
-        'operacion
-        '
-        Me.operacion.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.operacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.operacion.FormattingEnabled = True
-        Me.operacion.Items.AddRange(New Object() {"Operación dos columnas", "Sumatoria "})
-        Me.operacion.Location = New System.Drawing.Point(7, 85)
-        Me.operacion.Name = "operacion"
-        Me.operacion.Size = New System.Drawing.Size(121, 21)
-        Me.operacion.TabIndex = 2
-        '
         'guardar
         '
         Me.guardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -185,16 +129,6 @@ Partial Class pantallaPrincipal
         Me.guardar.TabIndex = 1
         Me.guardar.Text = "Guardar"
         Me.guardar.UseVisualStyleBackColor = True
-        '
-        'agregarPaso
-        '
-        Me.agregarPaso.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.agregarPaso.Location = New System.Drawing.Point(134, 85)
-        Me.agregarPaso.Name = "agregarPaso"
-        Me.agregarPaso.Size = New System.Drawing.Size(75, 23)
-        Me.agregarPaso.TabIndex = 0
-        Me.agregarPaso.Text = "Paso"
-        Me.agregarPaso.UseVisualStyleBackColor = True
         '
         'lista_plantillas
         '
@@ -262,13 +196,9 @@ Partial Class pantallaPrincipal
         Me.Text = "Form1"
         Me.Tab_Principal.ResumeLayout(False)
         Me.fill_rate.ResumeLayout(False)
-        Me.fill_Rate_Tab.ResumeLayout(False)
-        Me.visualizacion.ResumeLayout(False)
-        Me.stock_rotation_control.ResumeLayout(False)
-        Me.stock_rotation_control.PerformLayout()
-        CType(Me.stock_Rotation_Tab, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Procedimiento.ResumeLayout(False)
-        Me.Procedimiento.PerformLayout()
+        Me.fill_Rate_Panel.ResumeLayout(False)
+        Me.stock_Rotation_Status_Tab.ResumeLayout(False)
+        Me.stock_Rotation_Status_Tab.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -276,24 +206,19 @@ Partial Class pantallaPrincipal
 
     End Sub
     Friend WithEvents fill_rate As TabPage
-    Friend WithEvents visualizacion As TabPage
+    Friend WithEvents stock_Rotation_Data_Tab As TabPage
     Friend WithEvents lista_plantillas As ListBox
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents ArchivoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NuevaPlantillaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AnalizarArchivoToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents stock_Rotation_Tab As DataGridView
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents Tab_Principal As TabControl
-    Friend WithEvents Procedimiento As TabPage
-    Friend WithEvents guardar As Button
-    Friend WithEvents agregarPaso As Button
-    Friend WithEvents operacion As ComboBox
-    Friend WithEvents Visualizar As Button
     Friend WithEvents FillRateToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StockRotationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents fill_Rate_Tab As Panel
+    Friend WithEvents fill_Rate_Panel As Panel
     Friend WithEvents calendarFilter As MonthCalendar
-    Friend WithEvents stock_rotation_control As Panel
-    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents stock_Rotation_Status_Tab As TabPage
+    Friend WithEvents Visualizar As Button
+    Friend WithEvents guardar As Button
 End Class

@@ -1,8 +1,6 @@
 ﻿Imports Excel = Microsoft.Office.Interop.Excel
 MustInherit Class Analisis
-
     Public file As file
-    Protected first_row As Integer
     Public values As New Hashtable()
 
     Sub New(ByVal pFile As file)
@@ -43,5 +41,18 @@ MustInherit Class Analisis
             brands(row) = file.table.Rows(row)(0)
         Next
         Return brands
+    End Function
+
+    Protected Function getStoreTypes()
+        file.make_query("SELECT [Financial Rpt Code]" &
+                        " FROM " & file.activeTable &
+                        " GROUP BY [Financial Rpt Code]" &
+                        " ORDER BY [Financial Rpt Code]"
+                        )
+        Dim codes(file.table.Rows.Count - 1) As String
+        For row As Integer = 0 To file.table.Rows.Count - 1
+            codes(row) = file.table.Rows(row)(0)
+        Next
+        Return codes
     End Function
 End Class

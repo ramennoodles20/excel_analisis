@@ -1,0 +1,1 @@
+hacer check boxes dentro de un solo pannel, si se selecciona uno con un for se desseleccionan los otros. 
