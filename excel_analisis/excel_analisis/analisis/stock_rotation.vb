@@ -163,7 +163,7 @@
                 " FROM (" &
                         " (SELECT rutas.[Store Name], Agente, Merca, Zona, COUNT(rutas.[Store Name]) AS NRstores" &
                             " FROM (" & routes_file.path & "." & routes_file.activeTable & " rutas INNER JOIN " & file.path & "." & file.activeTable & " stock ON rutas.[Store Nbr] = stock.[Store Nbr])" &
-                            " WHERE ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] > 0)" &
+                            " WHERE ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] <= 0)" &
                             " GROUP BY rutas.[Store Name], Agente, Merca, Zona) t1" &
                     " INNER JOIN " &
                         " (SELECT rutas.[Store Name], Agente, Merca, Zona, COUNT(rutas.[Store Name]) AS totalStores" &

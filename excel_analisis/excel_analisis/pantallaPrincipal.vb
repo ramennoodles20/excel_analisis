@@ -72,7 +72,7 @@ Public Class pantallaPrincipal
 
     Private Sub get_Predefined_Paths()
         'global_Paths.program_Path = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData
-        global_Paths.program_Path = "C:\Users\TEMP\Desktop\excel_analisis"
+        global_Paths.program_Path = "C:\Users\Curso\Desktop\excel_analisis"
         Dim directoryInfo As New DirectoryInfo(global_Paths.program_Path)
         For Each file As FileInfo In directoryInfo.GetFiles()
             If file.Name.ToLower.Contains("fill") And file.Name.ToLower.Contains("rate") And file.Extension.ToString.Equals(".mdb") Then

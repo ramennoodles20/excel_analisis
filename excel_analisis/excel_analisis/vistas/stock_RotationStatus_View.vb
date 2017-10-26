@@ -100,26 +100,42 @@
         Next
     End Sub
 
+    'shows the priorities
     Private Sub analyze_Priorities()
+        'wirtes the titles for the priorities
         write_Priorities()
-        Dim priorities As DataTable = analisis.values.Item("priority")
-        Dim area As Integer
         dataGrid.RowCount += 1
-        For Each row As DataRow In priorities.Rows
-            If (row("Zona").Equals("GAM")) Then
-                area = 0
-            Else
-                area = 5
-            End If
-            dataGrid.Rows(dataGrid.RowCount - 2).Cells(area).Value = row("Store Name")
-            dataGrid.Rows(dataGrid.RowCount - 2).Cells(area + 1).Value = row("Agente")
-            dataGrid.Rows(dataGrid.RowCount - 2).Cells(area + 2).Value = row("Merca")
-            dataGrid.Rows(dataGrid.RowCount - 2).Cells(area + 3).Value = row("NRstores") & "/" & row("totalStores")
+        Dim priorities As DataTable = analisis.values.Item("priority")
 
-            dataGrid.RowCount += 1
+        Dim gamRow As Integer = dataGrid.RowCount - 2
+        Dim ruralRow As Integer = dataGrid.RowCount - 2
+
+        For Each row As DataRow In priorities.Rows
+            'adds the line on one side or another using the column start position 
+            If (row("Zona").Equals("GAM")) Then
+                add_Priority(gamRow, 0, row)
+                gamRow += 1
+            Else
+                add_Priority(ruralRow, 5, row)
+                ruralRow += 1
+            End If
+
+            'makes sure there at least two rows after the last element of priorities. 
+            If gamRow = dataGrid.RowCount - 1 Or ruralRow = dataGrid.RowCount - 1 Then
+                dataGrid.RowCount += 1
+            End If
         Next
     End Sub
 
+    'adds a line to the priority at the row and column specified
+    Private Sub add_Priority(ByVal row As Integer, ByVal column As Integer, ByVal infoRow As DataRow)
+        dataGrid.Rows(row).Cells(column).Value = infoRow("Store Name")
+        dataGrid.Rows(row).Cells(column + 1).Value = infoRow("Agente")
+        dataGrid.Rows(row).Cells(column + 2).Value = infoRow("Merca")
+        dataGrid.Rows(row).Cells(column + 3).Value = infoRow("NRstores") & "/" & infoRow("totalStores")
+    End Sub
+
+    'writes the titles for priorities at the last row of the data grid view.
     Private Sub write_Priorities()
         Dim lastRow As Integer = dataGrid.RowCount - 1
         dataGrid.RowCount += 3
@@ -134,5 +150,9 @@
         dataGrid.Rows(lastRow + 2).Cells(6).Value = "Agente"
         dataGrid.Rows(lastRow + 2).Cells(7).Value = "Merca"
         dataGrid.Rows(lastRow + 2).Cells(8).Value = "Qty Status NR"
+    End Sub
+
+    Private Sub analyze_No_RotationStores()
+
     End Sub
 End Class
