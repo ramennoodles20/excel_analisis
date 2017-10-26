@@ -101,6 +101,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="analisis\stock_rotation.vb" />
+    <Compile Include="Utilities\global_Paths.vb" />
     <Compile Include="vistas\fill_Rate_View.vb" />
     <Compile Include="vistas\stock_RotationData_View.vb" />
     <Compile Include="vistas\stock_RotationStatus_View.vb" />

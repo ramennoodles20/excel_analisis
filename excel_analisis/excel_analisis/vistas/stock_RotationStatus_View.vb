@@ -9,13 +9,14 @@
         resetdataGrid()
         analyze_Brand_Status()
         analyze_Agent_Status()
+        analyze_Priorities()
     End Sub
 
     Private Sub resetdataGrid()
         dataGrid.RowCount = 1
         dataGrid.RowCount = 1
 
-        dataGrid.RowCount = 2
+        dataGrid.RowCount = 3
         dataGrid.ColumnCount = 10
         dataGrid.Dock = DockStyle.Top
         dataGrid.Height = 400
@@ -41,7 +42,6 @@
         dataGrid.Columns(8).DefaultCellStyle.Format = "N2"
 
         tabPage.Controls.Add(dataGrid)
-
     End Sub
 
     Private Sub analyze_Brand_Status()
@@ -73,6 +73,7 @@
                 nrList.Add(statusPercent.Item("NR"))
                 oosList.Add(statusPercent.Item("OOS"))
             Next
+            'Display total for brand 
             dataGrid.Rows(1).Cells(1).Value = okList.Sum / okList.Count
             dataGrid.Rows(1).Cells(2).Value = nrList.Sum / nrList.Count
             dataGrid.Rows(1).Cells(3).Value = oosList.Sum / oosList.Count
@@ -83,8 +84,8 @@
         'get list of agents
         Dim agents As Hashtable = analisis.values.Item("agentStatus")
 
-        If (dataGrid.RowCount < agents.Count + 2) Then
-            dataGrid.RowCount += agents.Count + 2
+        If (dataGrid.RowCount < agents.Count) Then
+            dataGrid.RowCount += agents.Count
         End If
 
         Dim row = 1
@@ -99,4 +100,39 @@
         Next
     End Sub
 
+    Private Sub analyze_Priorities()
+        write_Priorities()
+        Dim priorities As DataTable = analisis.values.Item("priority")
+        Dim area As Integer
+        dataGrid.RowCount += 1
+        For Each row As DataRow In priorities.Rows
+            If (row("Zona").Equals("GAM")) Then
+                area = 0
+            Else
+                area = 5
+            End If
+            dataGrid.Rows(dataGrid.RowCount - 2).Cells(area).Value = row("Store Name")
+            dataGrid.Rows(dataGrid.RowCount - 2).Cells(area + 1).Value = row("Agente")
+            dataGrid.Rows(dataGrid.RowCount - 2).Cells(area + 2).Value = row("Merca")
+            dataGrid.Rows(dataGrid.RowCount - 2).Cells(area + 3).Value = row("NRstores") & "/" & row("totalStores")
+
+            dataGrid.RowCount += 1
+        Next
+    End Sub
+
+    Private Sub write_Priorities()
+        Dim lastRow As Integer = dataGrid.RowCount - 1
+        dataGrid.RowCount += 3
+        dataGrid.Rows(lastRow).Cells(0).Value = "Prioridades"
+
+        dataGrid.Rows(lastRow + 2).Cells(0).Value = "GAM"
+        dataGrid.Rows(lastRow + 2).Cells(1).Value = "Agente"
+        dataGrid.Rows(lastRow + 2).Cells(2).Value = "Merca"
+        dataGrid.Rows(lastRow + 2).Cells(3).Value = "Qty Status NR"
+
+        dataGrid.Rows(lastRow + 2).Cells(5).Value = "Rural"
+        dataGrid.Rows(lastRow + 2).Cells(6).Value = "Agente"
+        dataGrid.Rows(lastRow + 2).Cells(7).Value = "Merca"
+        dataGrid.Rows(lastRow + 2).Cells(8).Value = "Qty Status NR"
+    End Sub
 End Class

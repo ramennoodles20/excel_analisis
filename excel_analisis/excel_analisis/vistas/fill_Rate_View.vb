@@ -36,7 +36,7 @@ Class fill_Rate_View
         dataGrid.RowCount = 7
         dataGrid.ColumnCount = 8
         dataGrid.Dock = DockStyle.Top
-        dataGrid.Height = 400
+        dataGrid.Height = 4 + 200
         dataGrid.RowHeadersVisible = False
         dataGrid.ColumnHeadersVisible = False
 

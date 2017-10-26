@@ -7,7 +7,7 @@ Class fill_rate
         MyBase.New(pFile)
     End Sub
 
-    Public Overrides Sub analyze(ByVal routes As String)
+    Public Overrides Sub analyze()
         MsgBox("No ha escogido un rango de fecha")
     End Sub
 
@@ -18,7 +18,6 @@ Class fill_rate
                         " WHERE ([PO Cancel Date] < '" & endDate.ToString("MM/dd/yyyy") & "')" &
                         " AND ([Brand Desc] = '" & brand & "')"
                         )
-
         values = New Hashtable()
         Dim boxOrdered As Integer = sum_division(0, 1)
         Dim boxDelivered As Integer = sum_division(2, 3)

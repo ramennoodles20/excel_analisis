@@ -45,3 +45,15 @@ C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debu
 C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.exe
 C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.xml
 C:\Users\NataliaPC\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.pdb
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.exe.config
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.ResolveComReference.cache
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.exe
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.xml
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.pdb
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.exe
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.pdb
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Debug\excel_analisis.xml
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbprojResolveAssemblyReference.cache
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.pantallaPrincipal.resources
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.Resources.resources
+C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Debug\excel_analisis.vbproj.GenerateResource.Cache

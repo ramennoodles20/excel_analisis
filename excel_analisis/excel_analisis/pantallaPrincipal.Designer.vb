@@ -28,8 +28,6 @@ Partial Class pantallaPrincipal
         Me.calendarFilter = New System.Windows.Forms.MonthCalendar()
         Me.stock_Rotation_Data_Tab = New System.Windows.Forms.TabPage()
         Me.stock_Rotation_Status_Tab = New System.Windows.Forms.TabPage()
-        Me.Visualizar = New System.Windows.Forms.Button()
-        Me.guardar = New System.Windows.Forms.Button()
         Me.lista_plantillas = New System.Windows.Forms.ListBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -41,7 +39,6 @@ Partial Class pantallaPrincipal
         Me.Tab_Principal.SuspendLayout()
         Me.fill_rate.SuspendLayout()
         Me.fill_Rate_Panel.SuspendLayout()
-        Me.stock_Rotation_Status_Tab.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -99,8 +96,6 @@ Partial Class pantallaPrincipal
         'stock_Rotation_Status_Tab
         '
         Me.stock_Rotation_Status_Tab.AutoScroll = True
-        Me.stock_Rotation_Status_Tab.Controls.Add(Me.Visualizar)
-        Me.stock_Rotation_Status_Tab.Controls.Add(Me.guardar)
         Me.stock_Rotation_Status_Tab.Location = New System.Drawing.Point(4, 22)
         Me.stock_Rotation_Status_Tab.Name = "stock_Rotation_Status_Tab"
         Me.stock_Rotation_Status_Tab.Padding = New System.Windows.Forms.Padding(3)
@@ -108,27 +103,6 @@ Partial Class pantallaPrincipal
         Me.stock_Rotation_Status_Tab.TabIndex = 2
         Me.stock_Rotation_Status_Tab.Text = "Stock Rotation-Staus"
         Me.stock_Rotation_Status_Tab.UseVisualStyleBackColor = True
-        '
-        'Visualizar
-        '
-        Me.Visualizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Visualizar.AutoSize = True
-        Me.Visualizar.Location = New System.Drawing.Point(735, 518)
-        Me.Visualizar.Name = "Visualizar"
-        Me.Visualizar.Size = New System.Drawing.Size(75, 23)
-        Me.Visualizar.TabIndex = 3
-        Me.Visualizar.Text = "Visualizar"
-        Me.Visualizar.UseVisualStyleBackColor = True
-        '
-        'guardar
-        '
-        Me.guardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.guardar.Location = New System.Drawing.Point(816, 518)
-        Me.guardar.Name = "guardar"
-        Me.guardar.Size = New System.Drawing.Size(75, 23)
-        Me.guardar.TabIndex = 1
-        Me.guardar.Text = "Guardar"
-        Me.guardar.UseVisualStyleBackColor = True
         '
         'lista_plantillas
         '
@@ -197,8 +171,6 @@ Partial Class pantallaPrincipal
         Me.Tab_Principal.ResumeLayout(False)
         Me.fill_rate.ResumeLayout(False)
         Me.fill_Rate_Panel.ResumeLayout(False)
-        Me.stock_Rotation_Status_Tab.ResumeLayout(False)
-        Me.stock_Rotation_Status_Tab.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -219,6 +191,4 @@ Partial Class pantallaPrincipal
     Friend WithEvents fill_Rate_Panel As Panel
     Friend WithEvents calendarFilter As MonthCalendar
     Friend WithEvents stock_Rotation_Status_Tab As TabPage
-    Friend WithEvents Visualizar As Button
-    Friend WithEvents guardar As Button
 End Class

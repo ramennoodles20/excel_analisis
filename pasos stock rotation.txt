@@ -62,14 +62,14 @@ WHERE        (Agente = 'Jose Briones') AND ([Range 1 POS Qty] + [Range 2 POS Qty
 
 #################################################################################################################################################################################################################
 Todas las tiendas junto con las tiendas no rotation 
-SELECT        t1.rutas.[Store Name], t1.Agente, t1.Merca, t1.NRstores, t2.totalStores, t1.NRstores / t2.totalStores * 100 AS percentage, t1.Zona
-FROM            ((SELECT        rutas.[Store Name], Agente, Merca, Zona, COUNT(rutas.[Store Name]) AS NRstores
-                            FROM            (C:\Users\NataliaPC\Desktop\excel_analisis\RUTAS.mdb.RUTAS rutas INNER JOIN
-                                                     C:\Users\NataliaPC\Desktop\excel_analisis\STOCK_ROTATION_TESTER.mdb.[Stock Rotation EM 2] stock ON rutas.[Store Nbr] = stock.[Store Nbr])
-                            WHERE        ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] > 0)
+SELECT t1.rutas.[Store Name], t1.Agente, t1.Merca, t1.NRstores, t2.totalStores, t1.NRstores / t2.totalStores * 100 AS percentage, t1.Zona
+FROM ((SELECT rutas.[Store Name], Agente, Merca, Zona, COUNT(rutas.[Store Name]) AS NRstores
+                            FROM (C:\Users\TEMP\Desktop\excel_analisis\RUTAS.mdb.RUTAS rutas INNER JOIN
+                                                     C:\Users\TEMP\Desktop\excel_analisis\STOCK_ROTATION_TESTER.mdb.[Stock Rotation EM 2] stock ON rutas.[Store Nbr] = stock.[Store Nbr])
+                            WHERE ([Range 1 POS Qty] + [Range 2 POS Qty] + [Range 3 POS Qty] + [Range 4 POS Qty] > 0)
                             GROUP BY rutas.[Store Name], Agente, Merca, Zona) t1 INNER JOIN
                              (SELECT        rutas.[Store Name], Agente, Merca, Zona, COUNT(rutas.[Store Name]) AS totalStores
-                               FROM            (C:\Users\NataliaPC\Desktop\excel_analisis\RUTAS.mdb.RUTAS rutas INNER JOIN
-                                                         C:\Users\NataliaPC\Desktop\excel_analisis\STOCK_ROTATION_TESTER.mdb.[Stock Rotation EM 2] stock ON rutas.[Store Nbr] = stock.[Store Nbr])
+                               FROM (C:\Users\TEMP\Desktop\excel_analisis\RUTAS.mdb.RUTAS rutas INNER JOIN
+                                                         C:\Users\TEMP\Desktop\excel_analisis\STOCK_ROTATION_TESTER.mdb.[Stock Rotation EM 2] stock ON rutas.[Store Nbr] = stock.[Store Nbr])
                                GROUP BY rutas.[Store Name], Agente, Merca, Zona) t2 ON t1.[Store Name] = t2.[Store Name])
 ORDER BY t1.Zona
