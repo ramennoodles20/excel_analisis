@@ -10,13 +10,15 @@
         analyze_Brand_Status()
         analyze_Agent_Status()
         analyze_Priorities()
+        analyze_NRstores()
     End Sub
 
     Private Sub resetdataGrid()
+        dataGrid.AllowUserToAddRows = False
         dataGrid.RowCount = 1
         dataGrid.RowCount = 1
 
-        dataGrid.RowCount = 3
+        dataGrid.RowCount = 7
         dataGrid.ColumnCount = 10
         dataGrid.Dock = DockStyle.Top
         dataGrid.Height = 400
@@ -33,9 +35,12 @@
         dataGrid.Rows(0).Cells(7).Value = "NO Rotación"
         dataGrid.Rows(0).Cells(8).Value = "Out of Stock"
 
+        dataGrid.Rows(3).Cells(0).Value = "Prioridades"
+
         dataGrid.Columns(1).DefaultCellStyle.Format = "N2"
         dataGrid.Columns(2).DefaultCellStyle.Format = "N2"
         dataGrid.Columns(3).DefaultCellStyle.Format = "N2"
+        dataGrid.Columns(4).DefaultCellStyle.Format = "N2"
 
         dataGrid.Columns(6).DefaultCellStyle.Format = "N2"
         dataGrid.Columns(7).DefaultCellStyle.Format = "N2"
@@ -103,56 +108,97 @@
     'shows the priorities
     Private Sub analyze_Priorities()
         'wirtes the titles for the priorities
-        write_Priorities()
-        dataGrid.RowCount += 1
         Dim priorities As DataTable = analisis.values.Item("priority")
 
-        Dim gamRow As Integer = dataGrid.RowCount - 2
-        Dim ruralRow As Integer = dataGrid.RowCount - 2
+        'all titles will be written at the firstIndex row
+        Dim firstIndex As Integer = dataGrid.RowCount - 2
+        Dim currentRow As Integer = dataGrid.RowCount - 2
+        Dim startColumn = 0
+        Dim currentArea As String
 
+        currentArea = nullToString(priorities.Rows(1)("Zona"))
+        write_Priorities(firstIndex - 1, startColumn, currentArea)
         For Each row As DataRow In priorities.Rows
-            'adds the line on one side or another using the column start position 
-            If (row("Zona").Equals("GAM")) Then
-                add_Priority(gamRow, 0, row)
-                gamRow += 1
-            Else
-                add_Priority(ruralRow, 5, row)
-                ruralRow += 1
+            'get the zone for the current row
+            Dim rowZone As String
+            rowZone = nullToString(row("Zona"))
+
+            'if the zone is different then it will be placed in a different index 
+            If Not rowZone.Equals(currentArea) Then
+                currentArea = rowZone
+                currentRow = firstIndex
+                startColumn += 5
+                write_Priorities(firstIndex - 1, startColumn, currentArea)
+            End If
+
+            'If there are no NRStores the store will not be added to the priority list
+            If Not IsDBNull(row("NRStores")) Then
+                add_Priority(currentRow, startColumn, row)
+                currentRow += 1
             End If
 
             'makes sure there at least two rows after the last element of priorities. 
-            If gamRow = dataGrid.RowCount - 1 Or ruralRow = dataGrid.RowCount - 1 Then
+            If currentRow >= dataGrid.RowCount - 2 Then
                 dataGrid.RowCount += 1
+            End If
+
+            'makes sure there are enough columns for a new priority
+            If startColumn + 5 >= dataGrid.ColumnCount Then
+                dataGrid.ColumnCount += 5
             End If
         Next
     End Sub
 
-    'adds a line to the priority at the row and column specified
+    'writes the priority row at the row statring from the column 
     Private Sub add_Priority(ByVal row As Integer, ByVal column As Integer, ByVal infoRow As DataRow)
+        Dim agente As String = nullToString(infoRow("Agente"))
+        Dim merca As String = nullToString(infoRow("Merca"))
         dataGrid.Rows(row).Cells(column).Value = infoRow("Store Name")
-        dataGrid.Rows(row).Cells(column + 1).Value = infoRow("Agente")
-        dataGrid.Rows(row).Cells(column + 2).Value = infoRow("Merca")
+        dataGrid.Rows(row).Cells(column + 1).Value = agente
+        dataGrid.Rows(row).Cells(column + 2).Value = merca
         dataGrid.Rows(row).Cells(column + 3).Value = infoRow("NRstores") & "/" & infoRow("totalStores")
     End Sub
 
     'writes the titles for priorities at the last row of the data grid view.
-    Private Sub write_Priorities()
-        Dim lastRow As Integer = dataGrid.RowCount - 1
-        dataGrid.RowCount += 3
-        dataGrid.Rows(lastRow).Cells(0).Value = "Prioridades"
-
-        dataGrid.Rows(lastRow + 2).Cells(0).Value = "GAM"
-        dataGrid.Rows(lastRow + 2).Cells(1).Value = "Agente"
-        dataGrid.Rows(lastRow + 2).Cells(2).Value = "Merca"
-        dataGrid.Rows(lastRow + 2).Cells(3).Value = "Qty Status NR"
-
-        dataGrid.Rows(lastRow + 2).Cells(5).Value = "Rural"
-        dataGrid.Rows(lastRow + 2).Cells(6).Value = "Agente"
-        dataGrid.Rows(lastRow + 2).Cells(7).Value = "Merca"
-        dataGrid.Rows(lastRow + 2).Cells(8).Value = "Qty Status NR"
+    Private Sub write_Priorities(ByVal row As Integer, ByVal column As Integer, ByVal area As String)
+        dataGrid.Rows(row).Cells(column).Value = area
+        dataGrid.Rows(row).Cells(column + 1).Value = "Agente"
+        dataGrid.Rows(row).Cells(column + 2).Value = "Merca"
+        dataGrid.Rows(row).Cells(column + 3).Value = "Qty Status NR"
     End Sub
 
-    Private Sub analyze_No_RotationStores()
-
+    Private Sub analyze_NRstores()
+        Dim stores As DataTable = analisis.values.Item("priority")
+        stores = stores.Select("", "percentage DESC").CopyToDataTable
+        dataGrid.Rows.Add({"NO Rotation By Stores"})
+        Dim titles() As String = {
+                                   "Tienda",
+                                   "Agente",
+                                   "Merca",
+                                   "Qty Skus",
+                                   "% NR"}
+        dataGrid.Rows.Add(titles)
+        For row As Integer = 0 To stores.Rows.Count - 1
+            Dim info() As String = {stores.Rows(row)("Store Name"),
+                                    nullToString(stores.Rows(row)("Agente")),
+                                    nullToString(stores.Rows(row)("Merca")),
+                                    nullToZero(stores.Rows(row)("NRstores")) & "/" & stores.Rows(row)("totalStores"),
+                                    FormatPercent(nullToZero(stores.Rows(row)("percentage")), 2)}
+            dataGrid.Rows.Add(info)
+        Next
     End Sub
+
+    Private Function nullToZero(ByRef value As Object)
+        If IsDBNull(value) Then
+            value = 0
+        End If
+        Return value
+    End Function
+
+    Private Function nullToString(ByRef value As Object)
+        If IsDBNull(value) Then
+            value = "No Disponible"
+        End If
+        Return value
+    End Function
 End Class
