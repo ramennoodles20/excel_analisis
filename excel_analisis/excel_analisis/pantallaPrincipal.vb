@@ -64,15 +64,17 @@ Public Class pantallaPrincipal
         Dim infoFile As stock_rotation = New stock_rotation(file)
 
         infoFile.analyze()
+
         stock_rotationData_tab_controler.analisis = infoFile
         stock_rotationStatus_tab_controler.analisis = infoFile
+
         stock_rotationData_tab_controler.show_file()
         stock_rotationStatus_tab_controler.show_file()
     End Sub
 
     Private Sub get_Predefined_Paths()
         'global_Paths.program_Path = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData
-        global_Paths.program_Path = "C:\Users\Curso\Desktop\excel_analisis"
+        global_Paths.program_Path = "C:\Users\TEMP\Desktop\excel_analisis"
         Dim directoryInfo As New DirectoryInfo(global_Paths.program_Path)
         For Each file As FileInfo In directoryInfo.GetFiles()
             If file.Name.ToLower.Contains("fill") And file.Name.ToLower.Contains("rate") And file.Extension.ToString.Equals(".mdb") Then

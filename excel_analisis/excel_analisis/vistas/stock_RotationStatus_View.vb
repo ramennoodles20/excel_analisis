@@ -21,7 +21,7 @@
         dataGrid.RowCount = 7
         dataGrid.ColumnCount = 10
         dataGrid.Dock = DockStyle.Top
-        dataGrid.Height = 400
+        dataGrid.Height = 500
         dataGrid.RowHeadersVisible = False
         dataGrid.ColumnHeadersVisible = False
 
@@ -36,15 +36,6 @@
         dataGrid.Rows(0).Cells(8).Value = "Out of Stock"
 
         dataGrid.Rows(3).Cells(0).Value = "Prioridades"
-
-        dataGrid.Columns(1).DefaultCellStyle.Format = "N2"
-        dataGrid.Columns(2).DefaultCellStyle.Format = "N2"
-        dataGrid.Columns(3).DefaultCellStyle.Format = "N2"
-        dataGrid.Columns(4).DefaultCellStyle.Format = "N2"
-
-        dataGrid.Columns(6).DefaultCellStyle.Format = "N2"
-        dataGrid.Columns(7).DefaultCellStyle.Format = "N2"
-        dataGrid.Columns(8).DefaultCellStyle.Format = "N2"
 
         tabPage.Controls.Add(dataGrid)
     End Sub
@@ -70,18 +61,18 @@
                 dataGrid.Rows.Insert(2, 1)
 
                 dataGrid.Rows(2).Cells(0).Value = code
-                dataGrid.Rows(2).Cells(1).Value = statusPercent.Item("OK")
-                dataGrid.Rows(2).Cells(2).Value = statusPercent.Item("NR")
-                dataGrid.Rows(2).Cells(3).Value = statusPercent.Item("OOS")
+                dataGrid.Rows(2).Cells(1).Value = FormatPercent(statusPercent.Item("OK"), 2)
+                dataGrid.Rows(2).Cells(2).Value = FormatPercent(statusPercent.Item("NR"), 2)
+                dataGrid.Rows(2).Cells(3).Value = FormatPercent(statusPercent.Item("OOS"), 2)
 
                 okList.Add(statusPercent.Item("OK"))
                 nrList.Add(statusPercent.Item("NR"))
                 oosList.Add(statusPercent.Item("OOS"))
             Next
             'Display total for brand 
-            dataGrid.Rows(1).Cells(1).Value = okList.Sum / okList.Count
-            dataGrid.Rows(1).Cells(2).Value = nrList.Sum / nrList.Count
-            dataGrid.Rows(1).Cells(3).Value = oosList.Sum / oosList.Count
+            dataGrid.Rows(1).Cells(1).Value = FormatPercent(okList.Sum / okList.Count, 2)
+            dataGrid.Rows(1).Cells(2).Value = FormatPercent(nrList.Sum / nrList.Count, 2)
+            dataGrid.Rows(1).Cells(3).Value = FormatPercent(oosList.Sum / oosList.Count, 2)
         Next
     End Sub
 
@@ -98,9 +89,9 @@
             'get agent status percent pairs 
             Dim agentStatus As Hashtable = agents.Item(agent)
             dataGrid.Rows(row).Cells(5).Value = agent
-            dataGrid.Rows(row).Cells(6).Value = agentStatus.Item("OK")
-            dataGrid.Rows(row).Cells(7).Value = agentStatus.Item("NR")
-            dataGrid.Rows(row).Cells(8).Value = agentStatus.Item("OOS")
+            dataGrid.Rows(row).Cells(6).Value = FormatPercent(agentStatus.Item("OK"), 2)
+            dataGrid.Rows(row).Cells(7).Value = FormatPercent(agentStatus.Item("NR"), 2)
+            dataGrid.Rows(row).Cells(8).Value = FormatPercent(agentStatus.Item("OOS"), 2)
             row += 1
         Next
     End Sub

@@ -13,16 +13,17 @@ Class fill_rate
 
     Overrides Sub analyze(ByVal brand As String, ByVal endDate As Date)
         file.make_query(
-                        " SELECT  [Whse Qty Ordered (eaches)], [WHPK Qty], [Whse Qty Received (eaches)], [VNPK Qty], [Unit Cost]" &
+                        " SELECT  [Whse Qty Ordered (eaches)], [WHPK Qty], [Whse Qty Received (eaches)], [VNPK Qty], [Unit Cost US Dollars]" &
                         " FROM " & file.activeTable &
                         " WHERE ([PO Cancel Date] < '" & endDate.ToString("MM/dd/yyyy") & "')" &
                         " AND ([Brand Desc] = '" & brand & "')"
                         )
         values = New Hashtable()
+
         Dim boxOrdered As Integer = sum_division(0, 1)
         Dim boxDelivered As Integer = sum_division(2, 3)
         Dim boxDiference As Integer = boxOrdered - boxDelivered
-        Dim servicePercent As Double = (boxDelivered / boxOrdered) * 100
+        Dim servicePercent As Double = (boxDelivered / boxOrdered)
         Dim amountOrdered As Double = sum_multiplication(0, 4)
         Dim amountDeliviered As Double = sum_multiplication(2, 4)
         Dim amountLost As Double = amountOrdered - amountDeliviered

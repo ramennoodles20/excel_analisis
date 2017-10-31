@@ -46,7 +46,7 @@ Class stock_RotationData_View
         dataGrid.RowCount = 2
         dataGrid.ColumnCount = 19
         dataGrid.Dock = DockStyle.Top
-        dataGrid.Height = 400
+        dataGrid.Height = 500
         dataGrid.RowHeadersVisible = False
         dataGrid.ColumnHeadersVisible = False
 

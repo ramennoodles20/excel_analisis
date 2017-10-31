@@ -99,9 +99,9 @@
                 Dim OutOfStockCount As Integer = file.table.Rows(0)("productCount")
 
                 'storing status with percentage 
-                storeStatus.Add("OK", (okCount / storeCount) * 100)
-                storeStatus.Add("NR", (NRCount / storeCount) * 100)
-                storeStatus.Add("OOS", (OutOfStockCount / storeCount) * 100)
+                storeStatus.Add("OK", (okCount / storeCount))
+                storeStatus.Add("NR", (NRCount / storeCount))
+                storeStatus.Add("OOS", (OutOfStockCount / storeCount))
 
                 'only add store if it carries the brand 
                 If Not (Double.IsNaN(storeStatus.Item("OK")) And Double.IsNaN(storeStatus.Item("NR")) And Double.IsNaN(storeStatus.Item("OOS"))) Then
@@ -148,9 +148,9 @@
             Dim OutOfStockCount As Integer = file.table.Rows(0)("stores")
 
             'storing status with percentage 
-            agentStoreStatus.Add("OK", (okCount / totalCount) * 100)
-            agentStoreStatus.Add("NR", (NRCount / totalCount) * 100)
-            agentStoreStatus.Add("OOS", (OutOfStockCount / totalCount) * 100)
+            agentStoreStatus.Add("OK", (okCount / totalCount))
+            agentStoreStatus.Add("NR", (NRCount / totalCount))
+            agentStoreStatus.Add("OOS", (OutOfStockCount / totalCount))
 
             agent_Status.Add(agent, agentStoreStatus)
         Next
