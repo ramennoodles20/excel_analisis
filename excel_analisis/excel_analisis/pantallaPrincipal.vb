@@ -53,6 +53,40 @@ Public Class pantallaPrincipal
         End If
     End Sub
 
+    Private Sub DefinirCarpetaPorDefectoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DefinirCarpetaPorDefectToolStripMenuItem.Click
+        If FileSelect.ShowDialog() = DialogResult.OK Then
+            My.Settings.file_directory = FileSelect.SelectedPath
+            get_Predefined_Paths()
+        End If
+    End Sub
+
+    'gets the files from the directory the user has specified previously
+    Private Sub get_Predefined_Paths()
+        Dim directoryInfo As New DirectoryInfo(My.Settings.file_directory)
+        For Each file As FileInfo In directoryInfo.GetFiles()
+            If file.Name.ToLower.Contains("fill") And file.Name.ToLower.Contains("rate") And file.Extension.ToString.Equals(".mdb") Then
+                global_Paths.fill_rate_path = file.FullName
+            End If
+            If file.Name.ToLower.Contains("stock") And file.Name.ToLower.Contains("rotation") And file.Extension.ToString.Equals(".mdb") Then
+                global_Paths.stock_rotation_path = file.FullName
+            End If
+            If file.Name.ToLower.Contains("rutas") And file.Extension.ToString.Equals(".mdb") Then
+                global_Paths.routes_path = file.FullName
+            End If
+        Next
+    End Sub
+
+    'shows all the files that are retrieved 
+    Private Sub show_Predefined_Files()
+        If Not (IsNothing(global_Paths.fill_rate_path)) Then
+            show_Fill_Rate_File(global_Paths.fill_rate_path)
+        End If
+
+        If Not (IsNothing(global_Paths.stock_rotation_path)) Then
+            show_Stock_Rotation_File(global_Paths.stock_rotation_path)
+        End If
+    End Sub
+
     Private Sub show_Fill_Rate_File(ByVal path As String)
         Dim file = New file(global_Paths.fill_rate_path)
         fill_rate_tab_controler.analisis = New fill_rate(file)
@@ -72,31 +106,4 @@ Public Class pantallaPrincipal
         stock_rotationStatus_tab_controler.show_file()
     End Sub
 
-    Private Sub get_Predefined_Paths()
-        'global_Paths.program_Path = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData
-        global_Paths.program_Path = "C:\Users\TEMP\Desktop\excel_analisis"
-        Dim directoryInfo As New DirectoryInfo(global_Paths.program_Path)
-        For Each file As FileInfo In directoryInfo.GetFiles()
-            If file.Name.ToLower.Contains("fill") And file.Name.ToLower.Contains("rate") And file.Extension.ToString.Equals(".mdb") Then
-                global_Paths.fill_rate_path = file.FullName
-            End If
-            If file.Name.ToLower.Contains("stock") And file.Name.ToLower.Contains("rotation") And file.Extension.ToString.Equals(".mdb") Then
-                global_Paths.stock_rotation_path = file.FullName
-            End If
-            If file.Name.ToLower.Contains("rutas") And file.Extension.ToString.Equals(".mdb") Then
-                global_Paths.routes_path = file.FullName
-            End If
-        Next
-    End Sub
-
-    Private Sub show_Predefined_Files()
-        If Not (IsNothing(global_Paths.fill_rate_path)) Then
-            Dim file = New file(global_Paths.fill_rate_path)
-            show_Fill_Rate_File(global_Paths.fill_rate_path)
-        End If
-
-        If Not (IsNothing(global_Paths.stock_rotation_path)) Then
-            show_Stock_Rotation_File(global_Paths.stock_rotation_path)
-        End If
-    End Sub
 End Class

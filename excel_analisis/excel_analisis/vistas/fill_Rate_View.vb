@@ -29,6 +29,7 @@ Class fill_Rate_View
         Dim brands() As String = analisis.getBrands()
         analyze_fill_rate_results(dateEnd, brands)
         totalProducts(brands)
+        formatTotals(brands)
     End Sub
 
     Private Sub resetdataGrid()
@@ -75,7 +76,7 @@ Class fill_Rate_View
 
     'analyzes products in fill rate file one by one
     Private Sub analyze_fill_rate_results(ByVal endDate As Date, ByVal brands() As String)
-        'used to store pending items since showMissingProducts will add new rows and lower the results 
+        'used to store pending items sence showMissingProducts will add new rows and lower the results 
         Dim pending As Hashtable = New Hashtable()
 
         For Each brand In brands
@@ -169,6 +170,18 @@ Class fill_Rate_View
         End If
     End Sub
 
+    'gives format to the totals row (not essencial)
+    Private Sub formatTotals(ByVal brands() As String)
+        Dim row As Integer = brands.Count + 1
+        Dim percentFilled As Double = dataGrid.Rows(row).Cells(4).Value
+        Dim totalOrdered As Double = dataGrid.Rows(row).Cells(5).Value
+        Dim totalDelivered As Double = dataGrid.Rows(row).Cells(6).Value
+        Dim difference As Double = dataGrid.Rows(row).Cells(7).Value
 
+        dataGrid.Rows(row).Cells(4).Value = FormatPercent(percentFilled / 100)
+        dataGrid.Rows(row).Cells(5).Value = Double.Parse(totalOrdered).ToString("C2", numberFormat)
+        dataGrid.Rows(row).Cells(6).Value = Double.Parse(totalDelivered).ToString("C2", numberFormat)
+        dataGrid.Rows(row).Cells(7).Value = Double.Parse(difference).ToString("C2", numberFormat)
+    End Sub
 
 End Class

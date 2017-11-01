@@ -31,11 +31,15 @@ Partial Class pantallaPrincipal
         Me.lista_plantillas = New System.Windows.Forms.ListBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NuevaPlantillaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AnalizarArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FillRateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StockRotationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DefinirCarpetaPorDefectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.FileSelect = New System.Windows.Forms.FolderBrowserDialog()
+        Me.AgregarArchivoDeRutasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdministrarArchivosDeRutasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Tab_Principal.SuspendLayout()
         Me.fill_rate.SuspendLayout()
         Me.fill_Rate_Panel.SuspendLayout()
@@ -48,10 +52,10 @@ Partial Class pantallaPrincipal
         Me.Tab_Principal.Controls.Add(Me.fill_rate)
         Me.Tab_Principal.Controls.Add(Me.stock_Rotation_Data_Tab)
         Me.Tab_Principal.Controls.Add(Me.stock_Rotation_Status_Tab)
-        Me.Tab_Principal.Location = New System.Drawing.Point(216, 12)
+        Me.Tab_Principal.Location = New System.Drawing.Point(216, 31)
         Me.Tab_Principal.Name = "Tab_Principal"
         Me.Tab_Principal.SelectedIndex = 0
-        Me.Tab_Principal.Size = New System.Drawing.Size(905, 573)
+        Me.Tab_Principal.Size = New System.Drawing.Size(905, 579)
         Me.Tab_Principal.TabIndex = 0
         '
         'fill_rate
@@ -61,7 +65,7 @@ Partial Class pantallaPrincipal
         Me.fill_rate.Location = New System.Drawing.Point(4, 22)
         Me.fill_rate.Name = "fill_rate"
         Me.fill_rate.Padding = New System.Windows.Forms.Padding(3)
-        Me.fill_rate.Size = New System.Drawing.Size(897, 547)
+        Me.fill_rate.Size = New System.Drawing.Size(897, 553)
         Me.fill_rate.TabIndex = 0
         Me.fill_rate.Text = "Fill Rate"
         Me.fill_rate.UseVisualStyleBackColor = True
@@ -114,7 +118,7 @@ Partial Class pantallaPrincipal
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.HerramientasToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1133, 24)
@@ -123,16 +127,10 @@ Partial Class pantallaPrincipal
         '
         'ArchivoToolStripMenuItem
         '
-        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NuevaPlantillaToolStripMenuItem, Me.AnalizarArchivoToolStripMenuItem})
+        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AnalizarArchivoToolStripMenuItem})
         Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
         Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.ArchivoToolStripMenuItem.Text = "Archivo"
-        '
-        'NuevaPlantillaToolStripMenuItem
-        '
-        Me.NuevaPlantillaToolStripMenuItem.Name = "NuevaPlantillaToolStripMenuItem"
-        Me.NuevaPlantillaToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
-        Me.NuevaPlantillaToolStripMenuItem.Text = "Nueva Plantilla"
         '
         'AnalizarArchivoToolStripMenuItem
         '
@@ -153,15 +151,40 @@ Partial Class pantallaPrincipal
         Me.StockRotationToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
         Me.StockRotationToolStripMenuItem.Text = "Stock Rotation"
         '
+        'HerramientasToolStripMenuItem
+        '
+        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DefinirCarpetaPorDefectToolStripMenuItem, Me.AgregarArchivoDeRutasToolStripMenuItem, Me.AdministrarArchivosDeRutasToolStripMenuItem})
+        Me.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem"
+        Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(90, 20)
+        Me.HerramientasToolStripMenuItem.Text = "Herramientas"
+        '
+        'DefinirCarpetaPorDefectToolStripMenuItem
+        '
+        Me.DefinirCarpetaPorDefectToolStripMenuItem.Name = "DefinirCarpetaPorDefectToolStripMenuItem"
+        Me.DefinirCarpetaPorDefectToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
+        Me.DefinirCarpetaPorDefectToolStripMenuItem.Text = "Definir Carpeta de Archivos"
+        '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'AgregarArchivoDeRutasToolStripMenuItem
+        '
+        Me.AgregarArchivoDeRutasToolStripMenuItem.Name = "AgregarArchivoDeRutasToolStripMenuItem"
+        Me.AgregarArchivoDeRutasToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.AgregarArchivoDeRutasToolStripMenuItem.Text = "Agregar Archivo de Rutas"
+        '
+        'AdministrarArchivosDeRutasToolStripMenuItem
+        '
+        Me.AdministrarArchivosDeRutasToolStripMenuItem.Name = "AdministrarArchivosDeRutasToolStripMenuItem"
+        Me.AdministrarArchivosDeRutasToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.AdministrarArchivosDeRutasToolStripMenuItem.Text = "Administrar Archivos de Rutas"
         '
         'pantallaPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1133, 597)
+        Me.ClientSize = New System.Drawing.Size(1133, 751)
         Me.Controls.Add(Me.Tab_Principal)
         Me.Controls.Add(Me.lista_plantillas)
         Me.Controls.Add(Me.MenuStrip1)
@@ -182,7 +205,6 @@ Partial Class pantallaPrincipal
     Friend WithEvents lista_plantillas As ListBox
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents ArchivoToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents NuevaPlantillaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AnalizarArchivoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents Tab_Principal As TabControl
@@ -191,4 +213,9 @@ Partial Class pantallaPrincipal
     Friend WithEvents fill_Rate_Panel As Panel
     Friend WithEvents calendarFilter As MonthCalendar
     Friend WithEvents stock_Rotation_Status_Tab As TabPage
+    Friend WithEvents HerramientasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DefinirCarpetaPorDefectToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FileSelect As FolderBrowserDialog
+    Friend WithEvents AgregarArchivoDeRutasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AdministrarArchivosDeRutasToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -9,3 +9,14 @@ C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\e
 C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.exe
 C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.xml
 C:\Users\TEMP\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.pdb
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Release\excel_analisis.exe.config
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.vbproj.ResolveComReference.cache
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.exe
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.xml
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.pdb
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Release\excel_analisis.exe
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Release\excel_analisis.pdb
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\bin\Release\excel_analisis.xml
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.pantallaPrincipal.resources
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.Resources.resources
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.vbproj.GenerateResource.Cache
