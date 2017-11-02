@@ -20,3 +20,4 @@ C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\b
 C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.pantallaPrincipal.resources
 C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.Resources.resources
 C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.vbproj.GenerateResource.Cache
+C:\Users\TEMP.ESTUDIANTES\Desktop\excel_analisis\excel_analisis\excel_analisis\obj\Release\excel_analisis.PantallaIngreso.resources

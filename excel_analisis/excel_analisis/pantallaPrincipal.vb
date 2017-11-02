@@ -1,11 +1,10 @@
-﻿Imports System
-Imports System.IO
-Imports System.Text
+﻿Imports System.IO
 Public Class pantallaPrincipal
     Private fill_rate_tab_controler As tab_Layout
     Private stock_rotationData_tab_controler As tab_Layout
     Private stock_rotationStatus_tab_controler As tab_Layout
 
+    Private manager As XMLmanager = New XMLmanager
 
     Private CW As Integer = Me.Width ' Current Width
     Private CH As Integer = Me.Height ' Current Height
@@ -55,14 +54,14 @@ Public Class pantallaPrincipal
 
     Private Sub DefinirCarpetaPorDefectoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DefinirCarpetaPorDefectToolStripMenuItem.Click
         If FileSelect.ShowDialog() = DialogResult.OK Then
-            My.Settings.file_directory = FileSelect.SelectedPath
+            manager.editCompany(global_Paths.current_acount, FileSelect.SelectedPath)
             get_Predefined_Paths()
         End If
     End Sub
 
     'gets the files from the directory the user has specified previously
     Private Sub get_Predefined_Paths()
-        Dim directoryInfo As New DirectoryInfo(My.Settings.file_directory)
+        Dim directoryInfo As New DirectoryInfo(global_Paths.main_directory)
         For Each file As FileInfo In directoryInfo.GetFiles()
             If file.Name.ToLower.Contains("fill") And file.Name.ToLower.Contains("rate") And file.Extension.ToString.Equals(".mdb") Then
                 global_Paths.fill_rate_path = file.FullName

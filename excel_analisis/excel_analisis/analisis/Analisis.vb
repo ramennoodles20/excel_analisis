@@ -1,5 +1,4 @@
-﻿Imports Excel = Microsoft.Office.Interop.Excel
-MustInherit Class Analisis
+﻿MustInherit Class Analisis
     Public file As file
     Public values As New Hashtable()
 

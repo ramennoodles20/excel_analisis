@@ -83,6 +83,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="PantallaIngreso.Designer.vb">
+      <DependentUpon>PantallaIngreso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaIngreso.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pantallaPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -102,12 +108,16 @@
     </Compile>
     <Compile Include="analisis\stock_rotation.vb" />
     <Compile Include="Utilities\global_Paths.vb" />
+    <Compile Include="Utilities\XMLmanager.vb" />
     <Compile Include="vistas\fill_Rate_View.vb" />
     <Compile Include="vistas\stock_RotationData_View.vb" />
     <Compile Include="vistas\stock_RotationStatus_View.vb" />
     <Compile Include="vistas\tab_Layout.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PantallaIngreso.resx">
+      <DependentUpon>PantallaIngreso.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pantallaPrincipal.resx">
       <DependentUpon>pantallaPrincipal.vb</DependentUpon>
     </EmbeddedResource>
@@ -140,17 +150,10 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-    <COMReference Include="VBIDE">
-      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>5</VersionMajor>
-      <VersionMinor>3</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\extraMile.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

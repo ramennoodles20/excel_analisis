@@ -53,18 +53,6 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property file_directory() As String
-            Get
-                Return CType(Me("file_directory"),String)
-            End Get
-            Set
-                Me("file_directory") = value
-            End Set
-        End Property
     End Class
 End Namespace
 
