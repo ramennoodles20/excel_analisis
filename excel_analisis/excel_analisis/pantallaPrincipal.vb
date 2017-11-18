@@ -38,21 +38,21 @@ Public Class pantallaPrincipal
         show_Predefined_Files()
     End Sub
 
-    Private Sub FillRateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FillRateToolStripMenuItem.Click
+    Private Sub FillRateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles archivoFillRate.Click
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             global_Paths.fill_rate_path = OpenFileDialog1.FileName
             show_Fill_Rate_File(global_Paths.fill_rate_path)
         End If
     End Sub
 
-    Private Sub StockRotationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StockRotationToolStripMenuItem.Click
+    Private Sub StockRotationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles archivoStockRotation.Click
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             global_Paths.stock_rotation_path = OpenFileDialog1.FileName
             show_Stock_Rotation_File(global_Paths.stock_rotation_path)
         End If
     End Sub
 
-    Private Sub DefinirCarpetaPorDefectoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DefinirCarpetaPorDefectToolStripMenuItem.Click
+    Private Sub DefinirCarpetaPorDefectoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles cambiarCarpeta.Click
         If FileSelect.ShowDialog() = DialogResult.OK Then
             manager.editCompany(global_Paths.current_acount, FileSelect.SelectedPath)
             get_Predefined_Paths()
@@ -104,5 +104,4 @@ Public Class pantallaPrincipal
         stock_rotationData_tab_controler.show_file()
         stock_rotationStatus_tab_controler.show_file()
     End Sub
-
 End Class

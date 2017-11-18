@@ -6,7 +6,7 @@
         Me.file = pFile
     End Sub
 
-    MustOverride Overloads Sub analyze(ByVal filter As String, ByVal endDate As Date)
+    MustOverride Overloads Sub analyze(ByVal filter As String, ByVal startDate As Date, ByVal endDate As Date)
     MustOverride Overloads Sub analyze()
     Protected Function sum_division(ByVal column1 As Integer, ByVal column2 As Integer)
         Dim result As Integer = 0

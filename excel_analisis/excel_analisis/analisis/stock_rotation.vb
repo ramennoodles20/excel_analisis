@@ -8,7 +8,7 @@
     End Sub
 
     'Necessary 
-    Public Overrides Sub analyze(filter As String, endDate As Date)
+    Public Overrides Sub analyze(filter As String, startDate As Date, endDate As Date)
         Throw New NotImplementedException()
     End Sub
 

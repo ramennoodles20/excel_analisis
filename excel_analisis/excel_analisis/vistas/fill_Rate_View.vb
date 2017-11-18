@@ -25,9 +25,10 @@ Class fill_Rate_View
         resetdataGrid()
         'get the selected date
         Dim dateEnd As Date = calendar.SelectionRange.End
+        Dim dateStart As Date = calendar.SelectionRange.Start
         'get the brands in file
         Dim brands() As String = analisis.getBrands()
-        analyze_fill_rate_results(dateEnd, brands)
+        analyze_fill_rate_results(dateStart, dateEnd, brands)
         totalProducts(brands)
         formatTotals(brands)
     End Sub
@@ -75,7 +76,7 @@ Class fill_Rate_View
     End Sub
 
     'analyzes products in fill rate file one by one
-    Private Sub analyze_fill_rate_results(ByVal endDate As Date, ByVal brands() As String)
+    Private Sub analyze_fill_rate_results(ByVal startDate As Date, ByVal endDate As Date, ByVal brands() As String)
         'used to store pending items sence showMissingProducts will add new rows and lower the results 
         Dim pending As Hashtable = New Hashtable()
 
@@ -83,7 +84,7 @@ Class fill_Rate_View
             'add row to fill with product results
             dataGrid.Rows.Insert(1, 1)
             'get product results 
-            analisis.analyze(brand, endDate)
+            analisis.analyze(brand, endDate, startDate)
             Dim results As Hashtable = analisis.values
 
             'write brand name with format 

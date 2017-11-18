@@ -11,11 +11,11 @@ Class fill_rate
         MsgBox("No ha escogido un rango de fecha")
     End Sub
 
-    Overrides Sub analyze(ByVal brand As String, ByVal endDate As Date)
+    Overrides Sub analyze(ByVal brand As String, ByVal startDate As Date, ByVal endDate As Date)
         file.make_query(
                         " SELECT  [Whse Qty Ordered (eaches)], [WHPK Qty], [Whse Qty Received (eaches)], [VNPK Qty], [Unit Cost US Dollars]" &
                         " FROM " & file.activeTable &
-                        " WHERE ([PO Cancel Date] < '" & endDate.ToString("MM/dd/yyyy") & "')" &
+                        " WHERE ([PO Cancel Date] BETWEEN '" & startDate.ToString("MM/dd/yyyy") & "' AND '" & endDate.ToString("MM/dd/yyyy") & "')" &
                         " AND ([Brand Desc] = '" & brand & "')"
                         )
         values = New Hashtable()
@@ -28,9 +28,9 @@ Class fill_rate
         Dim amountDeliviered As Double = sum_multiplication(2, 4)
         Dim amountLost As Double = amountOrdered - amountDeliviered
         Dim missingItems As Hashtable = New Hashtable()
-        missing_Items(missingItems, endDate, brand)
+        missing_Items(missingItems, startDate, endDate, brand)
         Dim pendingItems As Integer
-        pending_Items(pendingItems, endDate, brand)
+        pending_Items(pendingItems, startDate, endDate, brand)
 
         values.Add("boxesOrdered", boxOrdered)
         values.Add("boxesDelivered", boxDelivered)
@@ -44,11 +44,11 @@ Class fill_rate
 
     End Sub
 
-    Private Sub missing_Items(ByRef list As Hashtable, ByVal endDate As Date, ByVal brand As String)
+    Private Sub missing_Items(ByRef list As Hashtable, ByVal startDate As Date, ByVal endDate As Date, ByVal brand As String)
         file.make_query(" SELECT [Whse Qty Ordered (eaches)], [Whse Qty Received (eaches)], [WHPK Qty], [VNPK Qty], [Signing Desc], [PO Number]" &
                         " FROM " & file.activeTable &
                         " WHERE ([Whse Qty Ordered (eaches)] > [Whse Qty Received (eaches)])" &
-                        " AND ([PO Cancel Date] < '" & endDate.ToString("MM/dd/yyyy") & "')" &
+                        " AND ([PO Cancel Date] BETWEEN '" & startDate.ToString("MM/dd/yyyy") & "' AND '" & endDate.ToString("MM/dd/yyyy") & "')" &
                         " AND ([Brand Desc] = '" & brand & "')"
                         )
 
@@ -61,11 +61,11 @@ Class fill_rate
         Next
     End Sub
 
-    Private Sub pending_Items(ByRef pending As Integer, ByVal endDate As Date, ByVal brand As String)
+    Private Sub pending_Items(ByRef pending As Integer, ByVal startDate As Date, ByVal endDate As Date, ByVal brand As String)
         file.make_query(" SELECT [Whse Qty Ordered (eaches)], [Whse Qty Received (eaches)], [WHPK Qty], [VNPK Qty], [Signing Desc]" &
                         " FROM " & file.activeTable &
                         " WHERE ([Whse Qty Ordered (eaches)] > [Whse Qty Received (eaches)])" &
-                        " AND ([PO Cancel Date] >= '" & endDate.ToString("MM/dd/yyyy") & "')" &
+                        " AND ([PO Cancel Date] BETWEEN '" & startDate.ToString("MM/dd/yyyy") & "' AND '" & endDate.ToString("MM/dd/yyyy") & "')" &
                         " AND ([Brand Desc] = '" & brand & "')"
                         )
 

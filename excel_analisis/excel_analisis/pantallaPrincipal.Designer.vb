@@ -30,6 +30,11 @@ Partial Class pantallaPrincipal
         Me.stock_Rotation_Status_Tab = New System.Windows.Forms.TabPage()
         Me.lista_plantillas = New System.Windows.Forms.ListBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.HerramientasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.archivoFillRate = New System.Windows.Forms.ToolStripMenuItem()
+        Me.archivoStockRotation = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HerramientasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AnalizarArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FillRateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -39,6 +44,7 @@ Partial Class pantallaPrincipal
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FileSelect = New System.Windows.Forms.FolderBrowserDialog()
         Me.VentasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cambiarCarpeta = New System.Windows.Forms.ToolStripMenuItem()
         Me.Tab_Principal.SuspendLayout()
         Me.fill_rate.SuspendLayout()
         Me.fill_Rate_Panel.SuspendLayout()
@@ -117,11 +123,43 @@ Partial Class pantallaPrincipal
         '
         'MenuStrip1
         '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HerramientasToolStripMenuItem1, Me.HerramientasToolStripMenuItem2})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1133, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "menu"
+        '
+        'HerramientasToolStripMenuItem1
+        '
+        Me.HerramientasToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator1, Me.archivoFillRate, Me.archivoStockRotation})
+        Me.HerramientasToolStripMenuItem1.Name = "HerramientasToolStripMenuItem1"
+        Me.HerramientasToolStripMenuItem1.Size = New System.Drawing.Size(65, 20)
+        Me.HerramientasToolStripMenuItem1.Text = "Archivos"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(255, 6)
+        '
+        'archivoFillRate
+        '
+        Me.archivoFillRate.Name = "archivoFillRate"
+        Me.archivoFillRate.Size = New System.Drawing.Size(258, 22)
+        Me.archivoFillRate.Text = "Seleccionar Archivo FillRate"
+        '
+        'archivoStockRotation
+        '
+        Me.archivoStockRotation.Name = "archivoStockRotation"
+        Me.archivoStockRotation.Size = New System.Drawing.Size(258, 22)
+        Me.archivoStockRotation.Text = "Seleccionar Archivo Stock Rotation"
+        '
+        'HerramientasToolStripMenuItem2
+        '
+        Me.HerramientasToolStripMenuItem2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.cambiarCarpeta})
+        Me.HerramientasToolStripMenuItem2.Name = "HerramientasToolStripMenuItem2"
+        Me.HerramientasToolStripMenuItem2.Size = New System.Drawing.Size(90, 20)
+        Me.HerramientasToolStripMenuItem2.Text = "Herramientas"
         '
         'ArchivoToolStripMenuItem
         '
@@ -169,6 +207,12 @@ Partial Class pantallaPrincipal
         Me.VentasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.VentasToolStripMenuItem.Text = "Ventas"
         '
+        'cambiarCarpeta
+        '
+        Me.cambiarCarpeta.Name = "cambiarCarpeta"
+        Me.cambiarCarpeta.Size = New System.Drawing.Size(163, 22)
+        Me.cambiarCarpeta.Text = "Cambiar Carpeta"
+        '
         'pantallaPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -206,4 +250,10 @@ Partial Class pantallaPrincipal
     Friend WithEvents DefinirCarpetaPorDefectToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FileSelect As FolderBrowserDialog
     Friend WithEvents VentasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HerramientasToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents archivoFillRate As ToolStripMenuItem
+    Friend WithEvents archivoStockRotation As ToolStripMenuItem
+    Friend WithEvents HerramientasToolStripMenuItem2 As ToolStripMenuItem
+    Friend WithEvents cambiarCarpeta As ToolStripMenuItem
 End Class
